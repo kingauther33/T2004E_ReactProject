@@ -1,7 +1,7 @@
 import React, { createRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './login.module.css';
-import images from '../../assets';
+import images from '../../assets'; // BAO GỒM TẤT CẢ CÁC ẢNH
 
 const LoginCallBack = () => {
 	const [isEmailError, setIsEmailError] = useState(false);
@@ -31,11 +31,12 @@ const LoginCallBack = () => {
 
 	return (
 		<>
+			{/* <div className={styles['limiter']}> */}
 			<div className={styles['limiter']}>
 				<div className={styles['container-login100']}>
 					<div className={styles['wrap-login100']}>
 						<div className={`${styles['login100-pic']}`} data-tilt>
-							<img src={images.login_hero} alt="IMG" />
+							<img src={images.admin.login_hero} alt="IMG" />
 						</div>
 
 						<form className={styles['login100-form']} onSubmit={handleFormSubmit}>
