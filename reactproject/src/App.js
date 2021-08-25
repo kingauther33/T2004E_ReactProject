@@ -4,11 +4,18 @@ import HealthyFoodRoutes from './routes';
 import { routes } from './routes/routes';
 import Error404 from './pages/Error404';
 import AdminSelectedMenuProvider from './store/AdminSelectedMenu';
+import Navbar from './components/user/Navbar';
+import Campaigns from './pages/User/Campaigns';
+import ContactUs from './pages/User/ContactUs';
+import AboutUs from './pages/User/AboutUs';
+import Recipes from './pages/User/Recipes';
+import Events from './pages/User/Events';
 
 function App() {
 	return (
 		<AdminSelectedMenuProvider>
 			<BrowserRouter>
+			<Navbar />
 				<Switch>
 					{routes.map((route, index) => (
 						<HealthyFoodRoutes
@@ -19,6 +26,11 @@ function App() {
 							exact
 						/>
 					))}
+					<Route path='/about-us' component={AboutUs} />
+					<Route path='/campaigns' component={Campaigns} />
+					<Route path='/contact-us' component={ContactUs} />
+					<Route path='/events' component={Events} />
+					<Route path='/recipes' component={Recipes} />
 
 					{/* Lam page lỗi */}
 					<Route path="/404">
