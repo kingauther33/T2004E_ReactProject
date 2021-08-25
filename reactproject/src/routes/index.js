@@ -26,7 +26,7 @@ const HealthyFoodRoutes = (props) => {
 
 	return (
 		<Route exact={exact} path={path}>
-			{routeWrapper(layout, page, rest)}
+			{routeWrapper(layout, page)(rest)}
 		</Route>
 	);
 };

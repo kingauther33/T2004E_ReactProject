@@ -5,7 +5,7 @@ import AdminSidebar from '../components/admin/Sidebar/index';
 
 const AdminLayout = (props) => {
 	return (
-		<div className="wrapper">
+		<div className="wrapper" style={{ backgroundColor: '#f4f6f9' }}>
 			<AdminSidebar />
 			{props.children}
 			{/* <AdminContent /> */}

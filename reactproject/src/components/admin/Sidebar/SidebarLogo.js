@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import images from '../../../assets';
 
 // const fakeColumns = [{ name: 'Dashboard' }];
 
@@ -8,7 +9,7 @@ const SidebarLogo = () => {
 		// SidebarSearch Form
 		<Link to="#" className="brand-link">
 			<img
-				src="dist/img/AdminLTELogo.png"
+				src={images.admin.logo}
 				alt="AdminLTE Logo"
 				className="brand-image img-circle elevation-3"
 				style={{ opacity: 0.8 }}

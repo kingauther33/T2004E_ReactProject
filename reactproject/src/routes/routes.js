@@ -15,8 +15,10 @@ import Recipes from '../pages/User/Recipes';
 // ADMIN
 import AdminDashboard from '../pages/Admin/Dashboard/dashboard';
 import ManageCampaigns from '../pages/Admin/ManageCampaigns';
+import ModifyCampaigns from '../pages/Admin/ManageCampaigns/ModifyCampaign';
 import ManageEvents from '../pages/Admin/ManageEvents';
 import ManageRecipes from '../pages/Admin/ManageRecipes';
+import ManageCategories from '../pages/Admin/ManageCategories';
 
 const LoginCallBackRoute = {
 	path: '/login-callback', // URL trên browser
@@ -66,6 +68,12 @@ const ManageCampaignsRoute = {
 	page: ManageCampaigns,
 };
 
+const ModifyCampaignsRoute = {
+	path: '/manage-campaigns/:id',
+	layout: AdminLayout,
+	page: ModifyCampaigns,
+};
+
 const ManageEventsRoute = {
 	path: '/manage-events',
 	layout: AdminLayout,
@@ -76,6 +84,12 @@ const ManageRecipesRoute = {
 	path: '/manage-recipes',
 	layout: AdminLayout,
 	page: ManageRecipes,
+};
+
+const ManageCategoriesRoute = {
+	path: '/manage-categories',
+	layout: AdminLayout,
+	page: ManageCategories,
 };
 
 export const routes = [
@@ -89,4 +103,6 @@ export const routes = [
 	ManageCampaignsRoute,
 	ManageEventsRoute,
 	ManageRecipesRoute,
+	ManageCategoriesRoute,
+	ModifyCampaignsRoute,
 ];

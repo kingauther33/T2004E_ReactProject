@@ -1,9 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { AdminSelectedMenuContext } from '../../../store/AdminSelectedMenu';
 
 const ContentHeader = () => {
 	const { selectedMenu } = useContext(AdminSelectedMenuContext);
+	const thisLocation = useRef(window.location.pathname);
+	// console.log(thisLocation);
 
 	return (
 		<section className="content-header">
@@ -17,7 +19,9 @@ const ContentHeader = () => {
 							<li className="breadcrumb-item">
 								<Link to="/admin-dashboard">Home</Link>
 							</li>
-							<li className="breadcrumb-item active">{selectedMenu}</li>
+							<li className="breadcrumb-item active">
+								<Link to={`/${thisLocation.current.split('/')[1]}`}>{selectedMenu}</Link>
+							</li>
 						</ol>
 					</div>
 				</div>

@@ -16,6 +16,7 @@ function App() {
 							path={route.path}
 							page={route.page}
 							layout={route.layout}
+							exact
 						/>
 					))}
 

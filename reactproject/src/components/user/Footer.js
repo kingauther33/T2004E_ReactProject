@@ -1,11 +1,15 @@
 import React from 'react';
 import Footer from '../pfooter/footer';
 import Icon from '../pfooter/icons';
+import styles from './Footer.module.css';
+import images from '../../assets';
 
 const FooterContainer = () => {
 	return (
 		<>
-			<Footer>
+			<div className={[styles['container']]}>
+				{/* <img src={images.contactUs.avatar} alt="Test" /> */}
+				<img src="/dist/img/user1-128x128.jpg" alt="Test" />
 				<Footer.Wrapper>
 					<Footer.Row>
 						<Footer.Column>
@@ -49,7 +53,7 @@ const FooterContainer = () => {
 						</Footer.Column>
 					</Footer.Row>
 				</Footer.Wrapper>
-			</Footer>
+			</div>
 		</>
 	);
 };
