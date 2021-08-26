@@ -4,7 +4,7 @@ import HealthyFoodRoutes from './routes';
 import { routes } from './routes/routes';
 import Error404 from './pages/Error404';
 import AdminSelectedMenuProvider from './store/AdminSelectedMenu';
-import Navbar from './components/user/Navbar';
+import Header from './components/user/Header';
 import Campaigns from './pages/User/Campaigns';
 import ContactUs from './pages/User/ContactUs';
 import AboutUs from './pages/User/AboutUs';
@@ -15,7 +15,6 @@ function App() {
 	return (
 		<AdminSelectedMenuProvider>
 			<BrowserRouter>
-			<Navbar />
 				<Switch>
 					{routes.map((route, index) => (
 						<HealthyFoodRoutes
