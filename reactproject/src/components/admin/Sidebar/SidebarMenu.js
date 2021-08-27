@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AdminSelectedMenuContext } from '../../../store/AdminSelectedMenu';
 
@@ -33,9 +33,36 @@ const fakeColumns = [
 const SidebarMenu = () => {
 	const { getSelectedMenu } = useContext(AdminSelectedMenuContext);
 
-	const handleSelectedMenu = (e) => {
-		getSelectedMenu(e.target.textContent);
+	const getName = (path) => {
+		let name = '';
+		if (path === 'admin-dashboard') {
+			name = 'Admin Dashboard';
+		}
+		if (path === 'manage-campaigns') {
+			name = 'Manage Campaigns';
+		}
+		if (path === 'manage-events') {
+			name = 'Manage Events';
+		}
+		if (path === 'manage-recipes') {
+			name = 'Manage Recipes';
+		}
+
+		if (path === 'manage-categories') {
+			name = 'Manage Categories';
+		}
+		return name;
 	};
+
+	useEffect(() => {
+		let pathName = window.location.pathname.split('/')[1];
+
+		getSelectedMenu(getName(pathName));
+	});
+
+	/* const handleSelectedMenu = (e) => {
+		getSelectedMenu(e.target.textContent);
+	}; */
 
 	return (
 		// SidebarSearch Form
@@ -48,7 +75,11 @@ const SidebarMenu = () => {
 			>
 				{fakeColumns.map((column) => (
 					<li className="nav-item" key={column.id}>
-						<Link to={column.link} className="nav-link" onClick={handleSelectedMenu}>
+						<Link
+							to={column.link}
+							className="nav-link"
+							// onClick={handleSelectedMenu}
+						>
 							<i
 								className={`${column.icon} me-2`}
 								style={{ color: '#c2c7d0', fontSize: '20px' }}
