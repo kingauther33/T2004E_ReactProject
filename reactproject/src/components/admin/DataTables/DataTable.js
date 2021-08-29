@@ -14,6 +14,7 @@ import {
 	Table,
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import parse from 'html-react-parser';
 
 // STYLE CHO TABLE
 const StyledTableCell = withStyles((theme) => ({
@@ -47,7 +48,7 @@ const DataTable = (props) => {
 	const [page, setPage] = React.useState(0);
 	const [rowsPerPage, setRowsPerPage] = React.useState(5);
 	const [rows, setRows] = useState([]);
-	const [columns, setColumns] = useState([]);
+	// const [columns, setColumns] = useState([]);
 	const listColumns = useRef(props.listColumns);
 	// const [searched, setSearched] = useState('');
 	let allStartingRows = props.listDatas;
@@ -120,10 +121,11 @@ const DataTable = (props) => {
 			setRows(rowArray);
 
 			// Set Columns theo list datas
-			let columnArray;
+			/* let columnArray;
 			if (renderedItems.length) {
 				// console.log(renderedItems);
-				columnArray = Object.keys(renderedItems[0]).filter((key, index) => index <= 4);
+				columnArray = Object.keys(renderedItems[0]);
+				// .filter((key, index) => index <= 4);
 				columnArray = columnArray.map((column) => {
 					column = column.replace('_', ' ');
 					console.log(column);
@@ -131,11 +133,11 @@ const DataTable = (props) => {
 				});
 				columnArray.push('ACTIONS');
 				// console.log(columnArray);
-			}
+			} */
 
-			setColumns(columnArray);
+			// setColumns(columnArray);
 			// console.log(Object.keys(renderedItems[0]));
-			console.log(columns);
+			// console.log(columns);
 		}
 	}, [props.listDatas]);
 
@@ -168,7 +170,7 @@ const DataTable = (props) => {
 
 	// RENDER COLUMN FUNCTIONS
 	// VERSION dung fix cung'
-	/* const renderedColumns = listColumns.current ? (
+	const renderedColumns = listColumns.current ? (
 		listColumns.current.map((column, index) => (
 			<StyledTableCell align={column.align} key={index}>
 				{column.name}
@@ -176,16 +178,29 @@ const DataTable = (props) => {
 		))
 	) : (
 		<></>
-	); */
+	);
 
 	// VERSION dung column theo DATA
-	const renderedColumns = columns ? (
+	/* const renderedColumns = columns ? (
 		columns.map((column, index) => (
 			<StyledTableCell key={index}>{column}</StyledTableCell>
 		))
 	) : (
 		<></>
-	);
+	); */
+
+	const checkRenderdRow = (row, key) => {
+		let value;
+		if (key === 'content') {
+			value = parse(row[key]);
+		} else if (key === 'startDate' || key === 'endDate') {
+			value = row[key].split('T')[0];
+		} else {
+			value = row[key];
+		}
+
+		return value;
+	};
 
 	// RENDER ROWS FUNCTIONS
 	const renderedRows = rows ? (
@@ -197,19 +212,22 @@ const DataTable = (props) => {
 				{/* <StyledTableCell component="th" scope="row">
 					{row.name}
 				</StyledTableCell> */}
-				{Object.keys(row).map(
-					(key, index) =>
-						index <= 4 && (
-							<StyledTableCell key={index} align="left">
-								{row[key]}
-							</StyledTableCell>
-						)
+				{Object.keys(row).map((key, index) =>
+					key !== 'campaignComments' ? (
+						<StyledTableCell key={index} align="left">
+							{/* {key === 'content' ? parse(row[key]) : row[key]} */}
+							{checkRenderdRow(row, key)}
+							{console.log(row)}
+						</StyledTableCell>
+					) : (
+						''
+					)
 				)}
 				{/* <StyledTableCell align="right">{row.name}</StyledTableCell>
 				<StyledTableCell align="right">{row.diameter}</StyledTableCell>
 				<StyledTableCell align="right">{row.terrain}</StyledTableCell>
 				<StyledTableCell align="right">{row.population}</StyledTableCell> */}
-				<StyledTableCell align="center">{row.action}</StyledTableCell>
+				{/* <StyledTableCell align="center">{row.action}</StyledTableCell> */}
 			</StyledTableRow>
 		))
 	) : (

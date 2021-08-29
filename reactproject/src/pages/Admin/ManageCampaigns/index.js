@@ -9,12 +9,16 @@ import DataTable from './../../../components/admin/DataTables/DataTable';
 import { connect } from 'react-redux';
 
 const originalColumns = [
-	{ name: 'Dessert', align: 'left' },
-	{ name: 'Name', align: 'right' },
-	{ name: 'Diameter (cm)', align: 'right' },
-	{ name: 'Terrain', align: 'right' },
-	{ name: 'Population', align: 'right' },
-	{ name: 'Actions', align: 'center' },
+	{ name: 'ID', align: 'left' },
+	{ name: 'Title', align: 'left' },
+	{ name: 'Description', align: 'left' },
+	{ name: 'Image', align: 'left' },
+	{ name: 'Content', align: 'left' },
+	{ name: 'TotalDonation', align: 'left' },
+	{ name: 'Sponsor', align: 'left' },
+	{ name: 'Start Date', align: 'left' },
+	{ name: 'End Date', align: 'left' },
+	{ name: 'Actions', align: 'left' },
 ];
 
 // Main FUNCTION
@@ -38,7 +42,7 @@ const ManageCampains = (props) => {
 		};
 
 		// Test Fetch data from API
-		const fethData = async () => {
+		/* const fethData = async () => {
 			await axios
 				.get(
 					// 'https://swapi.dev/api/planets/'
@@ -49,6 +53,24 @@ const ManageCampains = (props) => {
 				)
 				.then((respond) => {
 					// console.log(respond);
+					setListDatas(respond.data);
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		}; */
+
+		const fethData = async () => {
+			await axios
+				.get(
+					// 'https://swapi.dev/api/planets/'
+					// 'https://dummyapi.io/data/v1/post',
+					'https://localhost:44313/api/Campaigns'
+					// params,
+					// options
+				)
+				.then((respond) => {
+					console.log(respond);
 					setListDatas(respond.data);
 				})
 				.catch((err) => {
