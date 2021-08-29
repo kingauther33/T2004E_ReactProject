@@ -79,7 +79,7 @@ const ManageCampains = (props) => {
 			</div>
 			<h1>Test Redux</h1>
 			<div>
-				<h1>Planet: {props.planets}</h1>
+				<h1>Planet: {props.galaxy}</h1>
 				<button type="button" className="btn btn-primary" onClick={addToPlanet}>
 					Add More Planet
 				</button>
@@ -90,7 +90,7 @@ const ManageCampains = (props) => {
 
 const mapStateToProps = (state, ownProps) => {
 	return {
-		planets: state.planets,
+		galaxy: state.galaxy,
 	};
 };
 
