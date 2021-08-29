@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -16,6 +16,7 @@ namespace ReactAPI
 {
     public class Startup
     {
+        // Khởi tạo string Allow từ Origins
         readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
@@ -27,6 +28,7 @@ namespace ReactAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // ADD dòng này để Allow Origin (CORS)
             services.AddCors(options =>
             {
                 options.AddPolicy(name: MyAllowSpecificOrigins,
@@ -36,7 +38,10 @@ namespace ReactAPI
                     });
             });
             services.AddControllers();
+
+            // Dòng này để đảm bảo CONTROLLER chạy ổn
             services.AddTransient<Models.T2004E_ReactProjectContext, Models.T2004E_ReactProjectContext>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ReactAPI", Version = "v1" });

@@ -72,7 +72,7 @@ INSERT INTO dbo.Recipes(Title, Description, PrepTime, CookTime, Ingredients, Too
 	('Recipe 5', 'Description recipe 5', 45, 120, 'Onions, Apple, Chicken', 'Knife, Cutboard, Steamer', 3)
 
 -- INSERT CAMPAIGN COMMENTS --
-INSERT INTO dbo.CampaignComments(Comment, Rating, CreatedAt, CampainID, UserID) values 
+INSERT INTO dbo.CampaignComments(Comment, Rating, CreatedAt, CampaignID, UserID) values 
 	('This is GOOD CAMPAIGN!', 4, CONVERT(datetime, CURRENT_TIMESTAMP, 102), 1, 1),
 	('This is AWESOME CAMPAIGN!', 4, CONVERT(datetime, CURRENT_TIMESTAMP, 102), 1, 2),
 	('This is MARVELOUS CAMPAIGN!', 5, CONVERT(datetime, CURRENT_TIMESTAMP, 102), 1, 3),

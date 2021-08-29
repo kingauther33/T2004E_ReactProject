@@ -84,21 +84,21 @@ CREATE TABLE [dbo].[CampaignComments]
  [Comment]   nvarchar(max) NOT NULL ,
  [Rating]    int NOT NULL CHECK ([Rating] BETWEEN 1 AND 5),
  [CreatedAt] datetime NOT NULL ,
- [CampainID] int NOT NULL ,
+ [CampaignID] int NOT NULL ,
  [UserID]    int NOT NULL ,
 
 
  CONSTRAINT [PK_campaincomments] PRIMARY KEY CLUSTERED ([Id] ASC),
- CONSTRAINT [FK_74] FOREIGN KEY ([CampainID])  REFERENCES [dbo].[Campaigns]([Id]),
+ CONSTRAINT [FK_74] FOREIGN KEY ([CampaignID])  REFERENCES [dbo].[Campaigns]([Id]),
  CONSTRAINT [FK_77] FOREIGN KEY ([UserID])  REFERENCES [dbo].[Users]([Id]),
- CONSTRAINT [UK_100] UNIQUE NONCLUSTERED ([CampainID] ASC, [UserID] ASC)
+ CONSTRAINT [UK_100] UNIQUE NONCLUSTERED ([CampaignID] ASC, [UserID] ASC)
 );
 GO
 
 
 CREATE NONCLUSTERED INDEX [fkIdx_75] ON [dbo].[CampaignComments] 
  (
-  [CampainID] ASC
+  [CampaignID] ASC
  )
 
 GO

@@ -47,8 +47,6 @@ namespace ReactAPI.Models
 
                 entity.Property(e => e.EndDate).HasColumnType("datetime");
 
-                entity.Property(e => e.Image).IsRequired();
-
                 entity.Property(e => e.Sponsor).IsRequired();
 
                 entity.Property(e => e.StartDate).HasColumnType("datetime");
@@ -58,6 +56,9 @@ namespace ReactAPI.Models
 
             modelBuilder.Entity<CampaignComment>(entity =>
             {
+                entity.HasIndex(e => new { e.CampaignId, e.UserId }, "UK_100")
+                    .IsUnique();
+
                 entity.HasIndex(e => e.CampaignId, "fkIdx_75");
 
                 entity.HasIndex(e => e.UserId, "fkIdx_78");
@@ -67,8 +68,6 @@ namespace ReactAPI.Models
                 entity.Property(e => e.Comment).IsRequired();
 
                 entity.Property(e => e.CreatedAt).HasColumnType("datetime");
-
-                entity.Property(e => e.Rating).IsRequired();
 
                 entity.Property(e => e.UserId).HasColumnName("UserID");
 
@@ -87,15 +86,11 @@ namespace ReactAPI.Models
 
             modelBuilder.Entity<Category>(entity =>
             {
-                entity.Property(e => e.Image).IsRequired();
-
                 entity.Property(e => e.Name).IsRequired();
             });
 
             modelBuilder.Entity<ConnectedBrand>(entity =>
             {
-                entity.Property(e => e.Image).IsRequired();
-
                 entity.Property(e => e.Name).IsRequired();
             });
 
@@ -106,8 +101,6 @@ namespace ReactAPI.Models
                 entity.Property(e => e.Description).IsRequired();
 
                 entity.Property(e => e.EndDate).HasColumnType("datetime");
-
-                entity.Property(e => e.Image).IsRequired();
 
                 entity.Property(e => e.Location).IsRequired();
 
@@ -120,6 +113,9 @@ namespace ReactAPI.Models
 
             modelBuilder.Entity<EventComment>(entity =>
             {
+                entity.HasIndex(e => new { e.EventId, e.UserId }, "UK_101")
+                    .IsUnique();
+
                 entity.HasIndex(e => e.EventId, "fkIdx_63");
 
                 entity.HasIndex(e => e.UserId, "fkIdx_66");
@@ -153,8 +149,6 @@ namespace ReactAPI.Models
 
                 entity.Property(e => e.Description).IsRequired();
 
-                entity.Property(e => e.Image).IsRequired();
-
                 entity.Property(e => e.Ingredients).IsRequired();
 
                 entity.Property(e => e.Title).IsRequired();
@@ -170,8 +164,6 @@ namespace ReactAPI.Models
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.Property(e => e.ConfirmPassword).IsRequired();
-
                 entity.Property(e => e.Email).IsRequired();
 
                 entity.Property(e => e.FullName).IsRequired();

@@ -9,7 +9,7 @@ namespace ReactAPI.Models
     {
         public int Id { get; set; }
         public string Comment { get; set; }
-        public string Rating { get; set; }
+        public int Rating { get; set; }
         public DateTime CreatedAt { get; set; }
         public int CampaignId { get; set; }
         public int UserId { get; set; }
