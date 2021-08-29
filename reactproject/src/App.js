@@ -4,7 +4,6 @@ import HealthyFoodRoutes from './routes';
 import { routes } from './routes/routes';
 import Error404 from './pages/Error404';
 import AdminSelectedMenuProvider from './store/AdminSelectedMenu';
-import Header from './components/user/Header';
 import Campaigns from './pages/User/Campaigns';
 import ContactUs from './pages/User/ContactUs';
 import AboutUs from './pages/User/AboutUs';
@@ -13,6 +12,7 @@ import Events from './pages/User/Events';
 
 function App() {
 	return (
+		// DATA CONTEXT
 		<AdminSelectedMenuProvider>
 			<BrowserRouter>
 				<Switch>
@@ -25,13 +25,13 @@ function App() {
 							exact
 						/>
 					))}
-					<Route path='/about-us' component={AboutUs} />
-					<Route path='/campaigns' component={Campaigns} />
-					<Route path='/contact-us' component={ContactUs} />
-					<Route path='/events' component={Events} />
-					<Route path='/recipes' component={Recipes} />
+					<Route path="/about-us" component={AboutUs} />
+					<Route path="/campaigns" component={Campaigns} />
+					<Route path="/contact-us" component={ContactUs} />
+					<Route path="/events" component={Events} />
+					<Route path="/recipes" component={Recipes} />
 
-					{/* Lam page lỗi */}
+					{/* Làm Page Lỗi */}
 					<Route path="/404">
 						<Error404 />
 					</Route>

@@ -1,8 +1,9 @@
 import React from 'react';
 import { Field } from 'formik';
-import { TextField, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
+import DateTimePicker from 'react-datetime-picker';
 
-const TextInput = (props) => {
+const DateInput = (props) => {
 	return (
 		<>
 			<div className="col-3 py-3 mt-2">
@@ -10,18 +11,16 @@ const TextInput = (props) => {
 				<h5 className="font-weight-bold">{props.title}:</h5>
 			</div>
 			<div className="col-9">
-				{/* <Field name="title"> */}
 				<Field name={props.name}>
 					{({ field, form }) => (
-						<TextField
-							// fullWidth
-							fullWidth={props.fullWidth}
+						<DateTimePicker
 							{...field}
-							// type="text"
-							type={props.type}
-							// placeholder="Title"
-							placeholder={props.title}
-							// variant="outlined"
+							onBlur={form.handleBlur(field.name)}
+							format="y-MM-dd"
+							selected={(field.value && new Date(field.value)) || null}
+							onChange={(val) => {
+								form.setFieldValue(field.name, val);
+							}}
 						/>
 					)}
 				</Field>
@@ -39,4 +38,4 @@ const TextInput = (props) => {
 	);
 };
 
-export default TextInput;
+export default DateInput;

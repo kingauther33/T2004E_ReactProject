@@ -17,13 +17,19 @@ import {
 	Grid,
 } from '@material-ui/core';
 
-// CK EDITOR + HTML PARSER
+// CK EDITOR + HTML PARSER + DATETIME PICKER
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import parse from 'html-react-parser';
+import DateTimePicker from 'react-datetime-picker';
+import { format } from 'date-fns';
 
 import axios from 'axios';
 import AdminContent from './../../../components/admin/Content/index';
+import TextInput from './../../../components/admin/Forms/TextInput';
+import ImageInput from '../../../components/admin/Forms/ImageInput';
+import CKEditorInput from '../../../components/admin/Forms/CKEditorInput';
+import DateInput from './../../../components/admin/Forms/DateInput';
 
 const AddCampaign = () => {
 	const validationSchema = Yup.object().shape({
@@ -41,19 +47,23 @@ const AddCampaign = () => {
 			.min('15', 'Too Short!')
 			.max('1000', 'Too Long!')
 			.required('Required!'), // CKEDITOR
-		totalDonation: Yup.number(),
+		totalDonation: Yup.number()
+			.required('Required!')
+			.positive('Donation must be a positive number!')
+			.test(
+				'maxDigits',
+				'Donation must have 2 digits or more',
+				(number) => String(number).length >= 2
+			),
 		sponsor: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required!'),
-		startDate: Yup.string()
-			.min(2, 'Too Short!')
-			.max(50, 'Too Long!')
-			.required('Required!'),
+		startDate: Yup.date().min(new Date('01-01-2021')).max(new Date()),
 		endDate: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required!'),
 	});
 
 	const [data, setData] = useState('');
 	const [addedData, setAddedData] = useState(0);
 	const [selectedFile, setSelectedFile] = useState(null);
-	const imageRef = useRef();
+	// const imageRef = useRef();
 
 	const handleChange = (e, editor) => {
 		const data = editor.getData();
@@ -67,8 +77,8 @@ const AddCampaign = () => {
 		content: '', // CKEDITOR
 		totalDonation: 0,
 		sponsor: '',
-		startDate: new Date('2021-08-24'),
-		endDate: new Date('2021-08-24'),
+		startDate: new Date(),
+		endDate: new Date(),
 	};
 
 	/* 	const fileSelectedHandler = (e) => {
@@ -107,186 +117,94 @@ const AddCampaign = () => {
 								<Form autoComplete="off">
 									<div className="row align-items-center">
 										{/* TITLE */}
-										<div className="col-3 py-3 mt-2">
-											<h5 className="font-weight-bold">Title:</h5>
-										</div>
-										<div className="col-9">
-											<Field name="title">
-												{({ field, form }) => (
-													<TextField
-														fullWidth
-														{...field}
-														type="text"
-														placeholder="Title"
-														// variant="outlined"
-													/>
-												)}
-											</Field>
-										</div>
-										{errors.title && touched.title ? (
-											<div className="offset-3 col-9">
-												<Typography variant="inherit" color="error">
-													{errors.title}
-												</Typography>
-											</div>
-										) : (
-											''
-										)}
-
+										<TextInput
+											title="Title"
+											type="text"
+											fullWidth={true}
+											name="title"
+											values={values.title}
+											errors={errors.title}
+											touched={touched.title}
+										/>
 										{/* DESCRIPTION */}
-										<div className="col-3 py-3 mt-2">
-											<h5 className="font-weight-bold">Description:</h5>
-										</div>
-										<div className="col-9">
-											<Field name="description">
-												{({ field, form }) => (
-													<TextField
-														{...field}
-														fullWidth
-														type="text"
-														placeholder="Description"
-													/>
-												)}
-											</Field>
-										</div>
-										{errors.description && touched.description ? (
-											<div className="offset-3 col-9">
-												<Typography variant="inherit" color="error">
-													{errors.description}
-												</Typography>
-											</div>
-										) : (
-											''
-										)}
-
+										<TextInput
+											title="Description"
+											type="text"
+											fullWidth={true}
+											name="description"
+											values={values.description}
+											errors={errors.description}
+											touched={touched.description}
+										/>
 										{/* IMAGE */}
-										<div className="col-3 py-3 mt-2">
-											<h5 className="font-weight-bold align-self-center">Image:</h5>
-										</div>
-										<div className="col-9">
-											<Field name="image">
-												{({ field, form }) => (
-													<input
-														style={{ display: 'none' }}
-														{...field}
-														type="file"
-														// variant="outlined"
-														className="my-2"
-														onChange={(event) => {
-															setFieldValue(event.target.files[0]);
-														}}
-														ref={imageRef}
-													/>
-												)}
-											</Field>
-											<Button
-												variant="contained"
-												color="primary"
-												type="button"
-												className="mt-3"
-												onClick={() => imageRef.current.click()}
-											>
-												Add new Image
-											</Button>
-										</div>
-										{errors.image && touched.image ? (
-											<div className="offset-3 col-9">
-												<Typography variant="inherit" color="error">
-													{errors.image}
-												</Typography>
-											</div>
-										) : (
-											''
-										)}
-										{/* <div className="col-3">
+										<ImageInput
+											title="Image"
+											name="image"
+											type="file"
+											fullWidth={false}
+											values={values.image}
+											errors={errors.image}
+											touched={touched.image}
+											setFieldValue={setFieldValue}
+										/>
+										{/* UPLOAD DEMO 
+											
+											<div className="col-3">
 											<button
 												type="button"
 												className="btn btn-primary"
 												onClick={fileUploadHandler}
 											>
 												Upload File
-											</button>
-
-
-
-                    {/* CONTENT */}
-										<div className="col-3 py-3 mt-2">
-											<h5 className="font-weight-bold align-text-top">Content:</h5>
-										</div>
-										<div className="col-12">
-											<Field name="content">
-												{({ field, form }) => (
-													<CKEditor
-														editor={ClassicEditor}
-														data={field.value}
-														onChange={(event, editor) => {
-															form.setFieldValue('content', editor.getData());
-														}}
-														className="my-2"
-													/>
-												)}
-											</Field>
-										</div>
-										{errors.content && touched.content ? (
-											<div className="col-12">
-												<Typography variant="inherit" color="error">
-													{errors.content}
-												</Typography>
-											</div>
-										) : (
-											''
-										)}
-
+											</button> */}
+										{/* CONTENT */}
+										<CKEditorInput
+											title="Content"
+											name="content"
+											// type="none"
+											fullWidth={false}
+											values={values.content}
+											errors={errors.content}
+											touched={touched.content}
+											setFieldValue={setFieldValue}
+										/>
 										{/* TOTAL DONATION */}
-										<div className="col-3 py-3 mt-2">
-											<h5 className="font-weight-bold">Donation:</h5>
-										</div>
-										<div className="col-9">
-											<Field name="totalDonation">
-												{({ field, form }) => (
-													<TextField
-														{...field}
-														type="number"
-														placeholder="Total Donation"
-													/>
-												)}
-											</Field>
-										</div>
-										{errors.totalDonation && touched.totalDonation ? (
-											<div className="offset-3 col-9">
-												<Typography variant="inherit" color="error">
-													{errors.totalDonation}
-												</Typography>
-											</div>
-										) : (
-											''
-										)}
-
+										<TextInput
+											title="Donation"
+											type="number"
+											fullWidth={false}
+											name="totalDonation"
+											values={values.totalDonation}
+											errors={errors.totalDonation}
+											touched={touched.totalDonation}
+										/>
 										{/* SPONSOR */}
-										<div className="col-3 py-3 mt-2">
-											<h5 className="font-weight-bold">Sponsor:</h5>
-										</div>
-										<div className="col-9">
-											<Field name="sponsor">
-												{({ field, form }) => (
-													<TextField
-														{...field}
-														fullWidth
-														type="text"
-														placeholder="Sponsor"
-													/>
-												)}
-											</Field>
-										</div>
-										{errors.sponsor && touched.sponsor ? (
-											<div className="offset-3 col-9">
-												<Typography variant="inherit" color="error">
-													{errors.sponsor}
-												</Typography>
-											</div>
-										) : (
-											''
-										)}
+										<TextInput
+											title="Sponsor"
+											type="text"
+											fullWidth={true}
+											name="sponsor"
+											values={values.sponsor}
+											errors={errors.sponsor}
+											touched={touched.sponsor}
+										/>
+										{/* START DATE */}
+										<DateInput
+											title="Start Date"
+											name="startDate"
+											values={values.startDate}
+											errors={errors.startDate}
+											touched={touched.startDate}
+										/>
+
+										{/* END DATE */}
+										<DateInput
+											title="End Date"
+											name="endDate"
+											values={values.endDate}
+											errors={errors.endDate}
+											touched={touched.endDate}
+										/>
 
 										{/* END INPUT */}
 									</div>
