@@ -44,7 +44,8 @@ const ModifyCampaign = (props) => {
 		const fethData = async () => {
 			await axios
 				.get(
-					'https://swapi.dev/api/planets/' + id
+					// 'https://swapi.dev/api/planets/' + id
+					'https://api.openbrewerydb.org/breweries/' + id
 					// params,
 					// options
 				)
@@ -69,28 +70,28 @@ const ModifyCampaign = (props) => {
 			<Typography variant="h4">Editing {data.name}</Typography>
 			<div className="container mt-5">
 				<form noValidate autoComplete="off">
-					<div class="form-group row">
-						<label for="staticEmail" class="col-sm-2 col-form-label">
-							Email
+					<div className="form-group row">
+						<label htmlFor="staticEmail" className="col-sm-2 col-form-label">
+							ID
 						</label>
-						<div class="col-sm-10">
+						<div className="col-sm-10">
 							<input
 								type="text"
-								readonly
-								class="form-control-plaintext"
+								readOnly
+								className="form-control-plaintext"
 								id="staticEmail"
-								value="email@example.com"
+								value={id}
 							/>
 						</div>
 					</div>
-					<div class="form-group row">
-						<label for="inputPassword" class="col-sm-2 col-form-label">
+					<div className="form-group row">
+						<label htmlFor="inputPassword" className="col-sm-2 col-form-label">
 							Password
 						</label>
-						<div class="col-sm-10">
+						<div className="col-sm-10">
 							<input
 								type="password"
-								class="form-control"
+								className="form-control"
 								id="inputPassword"
 								placeholder="Password"
 							/>

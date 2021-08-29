@@ -47,6 +47,7 @@ const DataTable = (props) => {
 	const [page, setPage] = React.useState(0);
 	const [rowsPerPage, setRowsPerPage] = React.useState(5);
 	const [rows, setRows] = useState([]);
+	const [columns, setColumns] = useState([]);
 	const listColumns = useRef(props.listColumns);
 	// const [searched, setSearched] = useState('');
 	let allStartingRows = props.listDatas;
@@ -64,7 +65,7 @@ const DataTable = (props) => {
 	useEffect(() => {
 		console.log('Hello');
 		let renderedItems = [...props.listDatas];
-		let newArray;
+		let rowArray;
 		/* const handleEdit = (item) => {
 			context.editItem(item);
 		};
@@ -84,10 +85,12 @@ const DataTable = (props) => {
 		};
 
 		if (renderedItems) {
-			newArray = renderedItems.map((item) => {
+			rowArray = renderedItems.map((item) => {
 				// Lay Id tu API
 				// "https://swapi.dev/api/planets/1/"
-				const itemId = item.url.split('/')[5];
+				// const itemId = item.url.split('/')[5]; // for PLANET DEV
+				// 'https://api.openbrewerydb.org/breweries'
+				const itemId = item.id;
 				item.action = (
 					<div>
 						<button
@@ -112,10 +115,27 @@ const DataTable = (props) => {
 					</div>
 				);
 
-				// DESTRUCTURING TỪ ITEM
 				return item;
 			});
-			setRows(newArray);
+			setRows(rowArray);
+
+			// Set Columns theo list datas
+			let columnArray;
+			if (renderedItems.length) {
+				// console.log(renderedItems);
+				columnArray = Object.keys(renderedItems[0]).filter((key, index) => index <= 4);
+				columnArray = columnArray.map((column) => {
+					column = column.replace('_', ' ');
+					console.log(column);
+					return column.toUpperCase();
+				});
+				columnArray.push('ACTIONS');
+				// console.log(columnArray);
+			}
+
+			setColumns(columnArray);
+			// console.log(Object.keys(renderedItems[0]));
+			console.log(columns);
 		}
 	}, [props.listDatas]);
 
@@ -147,11 +167,21 @@ const DataTable = (props) => {
 	};
 
 	// RENDER COLUMN FUNCTIONS
-	const renderedColumns = listColumns.current ? (
+	// VERSION dung fix cung'
+	/* const renderedColumns = listColumns.current ? (
 		listColumns.current.map((column, index) => (
 			<StyledTableCell align={column.align} key={index}>
 				{column.name}
 			</StyledTableCell>
+		))
+	) : (
+		<></>
+	); */
+
+	// VERSION dung column theo DATA
+	const renderedColumns = columns ? (
+		columns.map((column, index) => (
+			<StyledTableCell key={index}>{column}</StyledTableCell>
 		))
 	) : (
 		<></>
@@ -164,14 +194,22 @@ const DataTable = (props) => {
 			: rows
 		).map((row, index) => (
 			<StyledTableRow key={index * Math.random()}>
-				<StyledTableCell component="th" scope="row">
+				{/* <StyledTableCell component="th" scope="row">
 					{row.name}
-				</StyledTableCell>
-				<StyledTableCell align="right">{row.name}</StyledTableCell>
+				</StyledTableCell> */}
+				{Object.keys(row).map(
+					(key, index) =>
+						index <= 4 && (
+							<StyledTableCell key={index} align="left">
+								{row[key]}
+							</StyledTableCell>
+						)
+				)}
+				{/* <StyledTableCell align="right">{row.name}</StyledTableCell>
 				<StyledTableCell align="right">{row.diameter}</StyledTableCell>
 				<StyledTableCell align="right">{row.terrain}</StyledTableCell>
-				<StyledTableCell align="right">{row.population}</StyledTableCell>
-				<StyledTableCell align="right">{row.action}</StyledTableCell>
+				<StyledTableCell align="right">{row.population}</StyledTableCell> */}
+				<StyledTableCell align="center">{row.action}</StyledTableCell>
 			</StyledTableRow>
 		))
 	) : (

@@ -1,5 +1,3 @@
-CREATE DATABASE T2004E_ReactProject
-
 use T2004E_ReactProject;
 
 IF NOT EXISTS (SELECT * FROM sys.tables t join sys.schemas s ON (t.schema_id = s.schema_id) WHERE s.name='dbo' and t.name='Users')

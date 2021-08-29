@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import DataTable from './../../../components/admin/DataTables/DataTable';
 
+import { connect } from 'react-redux';
+
 const originalColumns = [
 	{ name: 'Dessert', align: 'left' },
 	{ name: 'Name', align: 'right' },
@@ -30,7 +32,8 @@ const ManageCampains = (props) => {
 		};
 		const options = {
 			headers: {
-				Ticket: localStorage.getItem('ticket'),
+				// Ticket: localStorage.getItem('ticket'),
+				'app-id': '6128d9270b66625795bdb772',
 			},
 		};
 
@@ -38,13 +41,15 @@ const ManageCampains = (props) => {
 		const fethData = async () => {
 			await axios
 				.get(
-					'https://swapi.dev/api/planets/'
+					// 'https://swapi.dev/api/planets/'
+					// 'https://dummyapi.io/data/v1/post',
+					'https://api.openbrewerydb.org/breweries'
 					// params,
 					// options
 				)
 				.then((respond) => {
-					// console.log(respond.data.results);
-					setListDatas(respond.data.results);
+					// console.log(respond);
+					setListDatas(respond.data);
 				})
 				.catch((err) => {
 					console.log(err);
@@ -58,17 +63,43 @@ const ManageCampains = (props) => {
 		};
 	}, []);
 
+	//Test Redux
+	const addToPlanet = () => {
+		props.addPlanet();
+	};
+
 	// MAIN RETURN
 	return (
 		<AdminContent>
 			<DataTable listDatas={listDatas} listColumns={originalColumns} />
 			<div className="mt-5 d-flex justify-content-between">
 				<Button variant="contained" startIcon={<i className="fa fa-plus"></i>}>
-					<Link to="#">Add New</Link>
+					<Link to="/manage-campaigns/add-campaign">Add New</Link>
 				</Button>
+			</div>
+			<h1>Test Redux</h1>
+			<div>
+				<h1>Planet: {props.planets}</h1>
+				<button type="button" className="btn btn-primary" onClick={addToPlanet}>
+					Add More Planet
+				</button>
 			</div>
 		</AdminContent>
 	);
 };
 
-export default ManageCampains;
+const mapStateToProps = (state, ownProps) => {
+	return {
+		planets: state.planets,
+	};
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		addPlanet: () => {
+			dispatch({ type: 'add_planet' });
+		},
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ManageCampains);
