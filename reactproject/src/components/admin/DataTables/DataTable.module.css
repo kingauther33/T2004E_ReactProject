@@ -57,3 +57,35 @@
 	margin-left: 20px;
 	width: 125px;
 }
+
+.over__text,
+.over__text h1,
+.over__text h2,
+.over__text h3,
+.over__text h4,
+.over__text h5,
+.over__text h6,
+.over__text p,
+.over__text ul,
+.over__text li {
+	max-width: 15vw;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.over__textNormal,
+.over__textNormal h1,
+.over__textNormal h2,
+.over__textNormal h3,
+.over__textNormal h4,
+.over__textNormal h5,
+.over__textNormal h6,
+.over__textNormal p,
+.over__textNormal ul,
+.over__textNormal li {
+	max-width: 6.7vw;
+	overflow: hidden;
+	/* white-space: nowrap; */
+	text-overflow: ellipsis;
+}

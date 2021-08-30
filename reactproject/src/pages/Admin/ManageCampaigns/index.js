@@ -8,6 +8,10 @@ import DataTable from './../../../components/admin/DataTables/DataTable';
 
 import { connect } from 'react-redux';
 
+// API
+import { API } from '../../../API';
+import LoadingEffect from '../../../components/admin/LoadingEffect';
+
 const originalColumns = [
 	{ name: 'ID', align: 'left' },
 	{ name: 'Title', align: 'left' },
@@ -24,6 +28,7 @@ const originalColumns = [
 // Main FUNCTION
 const ManageCampains = (props) => {
 	const [listDatas, setListDatas] = useState([]);
+	const [loading, setLoading] = useState(false);
 
 	// FUNCTION kha giong ComponentDidMount
 	useEffect(() => {
@@ -62,13 +67,14 @@ const ManageCampains = (props) => {
 
 		const fethData = async () => {
 			await axios
-				.get(
+				/* .get(
 					// 'https://swapi.dev/api/planets/'
 					// 'https://dummyapi.io/data/v1/post',
 					'https://localhost:44313/api/Campaigns'
 					// params,
 					// options
-				)
+				) */
+				.get(API.campaigns.url)
 				.then((respond) => {
 					console.log(respond);
 					setListDatas(respond.data);
@@ -77,7 +83,11 @@ const ManageCampains = (props) => {
 					console.log(err);
 				});
 		};
+
+		// LOADING + FETCH DATA
+		setLoading(true);
 		fethData();
+		setLoading(false);
 
 		// CLean up Redundant
 		return () => {
@@ -93,6 +103,7 @@ const ManageCampains = (props) => {
 	// MAIN RETURN
 	return (
 		<AdminContent>
+			<LoadingEffect loading={loading} />
 			<DataTable listDatas={listDatas} listColumns={originalColumns} />
 			<div className="mt-5 d-flex justify-content-between">
 				<Button variant="contained" startIcon={<i className="fa fa-plus"></i>}>

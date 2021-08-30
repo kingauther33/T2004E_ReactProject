@@ -16,7 +16,7 @@ const DateInput = (props) => {
 						<DateTimePicker
 							{...field}
 							onBlur={form.handleBlur(field.name)}
-							format="y-MM-dd"
+							format="dd-MM-y"
 							selected={(field.value && new Date(field.value)) || null}
 							onChange={(val) => {
 								form.setFieldValue(field.name, val);

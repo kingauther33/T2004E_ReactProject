@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Field } from 'formik';
 import { TextField, Typography, Button } from '@material-ui/core';
 
@@ -15,13 +15,14 @@ const ImageInput = (props) => {
 					{({ field, form }) => (
 						<input
 							style={{ display: 'none' }}
-							{...field}
+							// {...field}
+							// value={field.value}
 							// type="file"
 							type={props.type}
 							// variant="outlined"
 							className="my-2"
 							onChange={(event) => {
-								props.setFieldValue(event.target.files[0]);
+								props.setFieldValue(props.name, event.target.files[0].name);
 							}}
 							ref={imageRef}
 						/>
@@ -36,6 +37,7 @@ const ImageInput = (props) => {
 				>
 					Add new Image
 				</Button>
+				{props.values && <p>{props.values}</p>}
 			</div>
 			{props.errors && props.touched ? (
 				<div className="offset-3 col-9">

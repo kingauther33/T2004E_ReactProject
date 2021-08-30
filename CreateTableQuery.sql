@@ -32,7 +32,7 @@ CREATE TABLE [dbo].[Campaigns]
  [Id]            int IDENTITY (1, 1) NOT NULL ,
  [Title]         nvarchar(max) NOT NULL ,
  [Description]   nvarchar(max) NOT NULL ,
- [Image]         varbinary(max) NULL ,
+ [Image]         nvarchar(max) NULL ,
  [Content]       nvarchar(max) NOT NULL ,
  [TotalDonation] float NOT NULL ,
  [Sponsor]       nvarchar(max) NOT NULL ,
@@ -51,7 +51,7 @@ CREATE TABLE [dbo].[Events]
  [Id]          int IDENTITY (1, 1) NOT NULL ,
  [Title]       nvarchar(max) NOT NULL ,
  [Description] nvarchar(max) NOT NULL ,
- [Image]       varbinary(max) NULL ,
+ [Image]       nvarchar(max) NULL ,
  [Content]     nvarchar(max) NOT NULL ,
  [Organizer]   nvarchar(max) NOT NULL ,
  [Location]    nvarchar(max) NOT NULL ,
@@ -69,7 +69,7 @@ CREATE TABLE [ConnectedBrands]
 (
  [Id]    int IDENTITY (1, 1) NOT NULL ,
  [Name]  nvarchar(max) NOT NULL ,
- [Image] varbinary(max) NULL ,
+ [Image] nvarchar(max) NULL ,
 
 
  CONSTRAINT [PK_connectedbrands] PRIMARY KEY CLUSTERED ([Id] ASC)
@@ -150,7 +150,7 @@ CREATE TABLE [dbo].[Categories]
 (
  [Id]    int IDENTITY (1, 1) NOT NULL ,
  [Name]  nvarchar(max) NOT NULL ,
- [Image] varbinary(max) NULL ,
+ [Image] nvarchar(max) NULL ,
 
 
  CONSTRAINT [PK_categories] PRIMARY KEY CLUSTERED ([Id] ASC)
@@ -163,7 +163,7 @@ CREATE TABLE [dbo].[Recipes]
 (
  [Id]          int IDENTITY (1, 1) NOT NULL ,
  [Title]       nvarchar(max) NOT NULL ,
- [Image]       varbinary(max) NULL ,
+ [Image]       nvarchar(max) NULL ,
  [Description] nvarchar(max) NOT NULL ,
  [PrepTime]    int NOT NULL ,
  [CookTime]    int NOT NULL ,

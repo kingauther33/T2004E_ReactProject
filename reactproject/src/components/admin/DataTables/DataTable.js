@@ -15,6 +15,7 @@ import {
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import parse from 'html-react-parser';
+import images from '../../../assets';
 
 // STYLE CHO TABLE
 const StyledTableCell = withStyles((theme) => ({
@@ -147,10 +148,11 @@ const DataTable = (props) => {
 		const searchInput = document.querySelector('#searchInput');
 		console.log(allStartingRows);
 		const filteredRows = allStartingRows.filter((row) => {
-			return row.name.toLowerCase().includes(searchInput.value.toLowerCase());
+			return row.title.toLowerCase().includes(searchInput.value.toLowerCase());
 		});
 		// console.log(filteredRows);
 		setRows(filteredRows);
+		setPage(0);
 	};
 
 	/* 	const cancelSearch = () => {
@@ -195,6 +197,22 @@ const DataTable = (props) => {
 			value = parse(row[key]);
 		} else if (key === 'startDate' || key === 'endDate') {
 			value = row[key].split('T')[0];
+		} else if (row[key] === null) {
+			value = (
+				<img
+					src={images.admin[`prod${row.id}`]}
+					alt={`Prod${key}`}
+					style={{ width: '75px' }}
+				/>
+			);
+		} else if (key === 'image') {
+			value = (
+				<img
+					src={images.admin[row.image.split('.')[0]]}
+					alt={row.name}
+					style={{ width: '75px' }}
+				/>
+			);
 		} else {
 			value = row[key];
 		}
@@ -214,7 +232,14 @@ const DataTable = (props) => {
 				</StyledTableCell> */}
 				{Object.keys(row).map((key, index) =>
 					key !== 'campaignComments' ? (
-						<StyledTableCell key={index} align="left">
+						<StyledTableCell
+							key={index}
+							align="left"
+							className={
+								key === 'content' ? styles['over__text'] : styles['over__textNormal']
+							}
+							// className={styles['over__text']}
+						>
 							{/* {key === 'content' ? parse(row[key]) : row[key]} */}
 							{checkRenderdRow(row, key)}
 							{console.log(row)}
@@ -246,6 +271,12 @@ const DataTable = (props) => {
 						// onChange={requestSearch}
 						// onCancel={cancelSearch}
 						placeholder="Enter Name"
+						onKeyPress={(event) => {
+							if (event.key === 'Enter') {
+								requestSearch();
+							}
+						}}
+						// onChange={requestSearch}
 					/>
 					<button
 						type="button"

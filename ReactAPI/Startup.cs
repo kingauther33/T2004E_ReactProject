@@ -34,7 +34,11 @@ namespace ReactAPI
                 options.AddPolicy(name: MyAllowSpecificOrigins,
                     builder =>
                     {
-                        builder.WithOrigins("*");
+                        builder
+                        //.WithOrigins("*")
+                        .AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
                     });
             });
             services.AddControllers();

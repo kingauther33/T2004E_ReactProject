@@ -9,7 +9,7 @@ namespace ReactAPI.Models
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public byte[] Image { get; set; }
+        public string Image { get; set; }
         public string Description { get; set; }
         public int PrepTime { get; set; }
         public int CookTime { get; set; }
