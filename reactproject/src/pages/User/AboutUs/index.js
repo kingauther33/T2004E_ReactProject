@@ -10,19 +10,18 @@ const AboutUs = () => {
 			{/* CSS khi dùng CSS MODULE */}
 			<div className={`${styles['heading-page']} ${styles['header-text']}`}>
 				<section className={styles['page-heading']}>
-					<div className="container">
-						<div className="row">
-							<div className="col-lg-12">
-								{/* <img src={images.aboutUs.heading_bg} alt="Test" /> */}
-								<div className={styles['text-content']}>
-									<h4>about us</h4>
-									<h2>more about us!</h2>
-								</div>
+				<div className="container">
+					<div className="row">
+						<div className="col-lg-12">
+							{/* <img src={images.aboutUs.heading_bg} alt="Test" /> */}
+							<div className={styles['text-content']}>
+								<h2>about us</h2>
 							</div>
 						</div>
 					</div>
-				</section>
-			</div>
+				</div>
+			</section>
+		</div>
 			<section className={styles['about-us']}>
 				<div className="container">
 					<div className="row">
@@ -146,6 +145,7 @@ const AboutUs = () => {
 							</ul>
 						</div>
 					</div>
+
 				</div>
 			</section>
 		</>
