@@ -12,10 +12,10 @@ const routeWrapper = (Layout, Page) => {
 	return LayoutSwitcher;
 };
 
-/* const routeWrapper = (Layout, Page, props) => {
+/* const routeWrapper = (Layout, HomeP, props) => {
 	return (
 		<Layout>
-			<Page {...props} />
+			<HomeP {...props} />
 		</Layout>
 	);
 }; */
