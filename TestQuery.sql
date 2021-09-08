@@ -31,3 +31,8 @@ DELETE FROM dbo.Users
 DELETE FROM dbo.Recipes
 DELETE FROM dbo.CampaignComments
 DELETE FROM dbo.EventComments
+
+
+DELETE FROM dbo.CampaignComments WHERE Id = 1
+DELETE FROM dbo.Events WHERE Id = 2 
+

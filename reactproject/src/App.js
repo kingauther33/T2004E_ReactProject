@@ -9,36 +9,39 @@ import ContactUs from './pages/User/ContactUs';
 import AboutUs from './pages/User/AboutUs';
 import Recipes from './pages/User/Recipes';
 import Events from './pages/User/Events';
+import { DataContextProvider } from './store/PassData-context';
 
 function App() {
 	return (
 		// DATA CONTEXT
-		<AdminSelectedMenuProvider>
-			<BrowserRouter>
-				<Switch>
-					{routes.map((route, index) => (
-						<HealthyFoodRoutes
-							key={index}
-							path={route.path}
-							page={route.page}
-							layout={route.layout}
-							exact
-						/>
-					))}
-					<Route path="/about-us" component={AboutUs} />
-					<Route path="/campaigns" component={Campaigns} />
-					<Route path="/contact-us" component={ContactUs} />
-					<Route path="/events" component={Events} />
-					<Route path="/recipes" component={Recipes} />
+		<DataContextProvider>
+			<AdminSelectedMenuProvider>
+				<BrowserRouter>
+					<Switch>
+						{routes.map((route, index) => (
+							<HealthyFoodRoutes
+								key={index}
+								path={route.path}
+								page={route.page}
+								layout={route.layout}
+								exact
+							/>
+						))}
+						<Route path="/about-us" component={AboutUs} />
+						<Route path="/campaigns" component={Campaigns} />
+						<Route path="/contact-us" component={ContactUs} />
+						<Route path="/events" component={Events} />
+						<Route path="/recipes" component={Recipes} />
 
-					{/* Làm Page Lỗi */}
-					<Route path="/404">
-						<Error404 />
-					</Route>
-					<Redirect from="*" to="/404" />
-				</Switch>
-			</BrowserRouter>
-		</AdminSelectedMenuProvider>
+						{/* Làm Page Lỗi */}
+						<Route path="/404">
+							<Error404 />
+						</Route>
+						<Redirect from="*" to="/404" />
+					</Switch>
+				</BrowserRouter>
+			</AdminSelectedMenuProvider>
+		</DataContextProvider>
 	);
 }
 

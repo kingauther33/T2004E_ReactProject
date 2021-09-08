@@ -74,13 +74,11 @@ namespace ReactAPI.Models
                 entity.HasOne(d => d.Campaign)
                     .WithMany(p => p.CampaignComments)
                     .HasForeignKey(d => d.CampaignId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_74");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.CampaignComments)
                     .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_77");
             });
 
@@ -113,12 +111,12 @@ namespace ReactAPI.Models
 
             modelBuilder.Entity<EventComment>(entity =>
             {
-                entity.HasIndex(e => new { e.EventId, e.UserId }, "UK_101")
+                entity.HasIndex(e => new { e.UserId, e.EventId }, "UK_101")
                     .IsUnique();
 
-                entity.HasIndex(e => e.EventId, "fkIdx_63");
+                entity.HasIndex(e => e.UserId, "fkIdx_63");
 
-                entity.HasIndex(e => e.UserId, "fkIdx_66");
+                entity.HasIndex(e => e.EventId, "fkIdx_66");
 
                 entity.Property(e => e.Comment).IsRequired();
 
@@ -131,13 +129,11 @@ namespace ReactAPI.Models
                 entity.HasOne(d => d.Event)
                     .WithMany(p => p.EventComments)
                     .HasForeignKey(d => d.EventId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_62");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.EventComments)
                     .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_65");
             });
 
@@ -158,7 +154,6 @@ namespace ReactAPI.Models
                 entity.HasOne(d => d.Category)
                     .WithMany(p => p.Recipes)
                     .HasForeignKey(d => d.CategoryId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_47");
             });
 

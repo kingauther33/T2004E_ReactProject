@@ -14,7 +14,7 @@ namespace ReactAPI.Models
         public int EventId { get; set; }
         public int UserId { get; set; }
 
-        public virtual User Event { get; set; }
-        public virtual Event User { get; set; }
+        public virtual Event Event { get; set; }
+        public virtual User User { get; set; }
     }
 }

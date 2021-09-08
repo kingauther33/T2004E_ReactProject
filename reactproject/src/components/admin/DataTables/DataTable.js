@@ -16,6 +16,8 @@ import {
 import { Link } from 'react-router-dom';
 import parse from 'html-react-parser';
 import images from '../../../assets';
+import { API } from '../../../API';
+import axios from 'axios';
 
 // STYLE CHO TABLE
 const StyledTableCell = withStyles((theme) => ({
@@ -48,117 +50,25 @@ const DataTable = (props) => {
 	// CAC STATE TRONG FUNCTIONS
 	const [page, setPage] = React.useState(0);
 	const [rowsPerPage, setRowsPerPage] = React.useState(5);
-	const [rows, setRows] = useState([]);
-	// const [columns, setColumns] = useState([]);
-	const listColumns = useRef(props.listColumns);
-	// const [searched, setSearched] = useState('');
-	let allStartingRows = props.listDatas;
-	const thisLocation = useRef(window.location.pathname);
+	const [rows, setRows] = useState(props.rows);
+	const columns = useRef(props.columns);
+	let allStartingRows = props.rows;
 	const classes = useStyles();
 
-	/* 	useEffect(() => {
-		setRows(props.listRows);
-
-		return () => {
-			setRows([]);
-		};
-	}, [props.listRows]); */
-
 	useEffect(() => {
-		console.log('Hello');
-		let renderedItems = [...props.listDatas];
-		let rowArray;
-		/* const handleEdit = (item) => {
-			context.editItem(item);
-		};
-
-		const handleFilter = (item) => {
-			console.log(item);
-			const filtered = renderedItems.filter((x) => x.id !== item.id);
-			setListData(filtered);
-		}; */
-
-		const handleFilter = (e) => {
-			console.log('In Delete');
-		};
-
-		const handleEdit = (e) => {
-			console.log('In Edit');
-		};
-
-		if (renderedItems) {
-			rowArray = renderedItems.map((item) => {
-				// Lay Id tu API
-				// "https://swapi.dev/api/planets/1/"
-				// const itemId = item.url.split('/')[5]; // for PLANET DEV
-				// 'https://api.openbrewerydb.org/breweries'
-				const itemId = item.id;
-				item.action = (
-					<div>
-						<button
-							type="button"
-							style={{ border: 'none', color: '#3f51b5' }}
-							onClick={handleFilter.bind(null)}
-						>
-							<i className="fas fa-trash" style={{ fontSize: '16px' }}></i>
-						</button>
-						<Link to={`${thisLocation.current}/${itemId}`}>
-							<button
-								style={{
-									border: 'none',
-									color: 'red',
-									marginLeft: '10px',
-								}}
-								onClick={handleEdit.bind(null)}
-							>
-								<i className="fas fa-edit" style={{ fontSize: '16px' }}></i>
-							</button>
-						</Link>
-					</div>
-				);
-
-				return item;
-			});
-			setRows(rowArray);
-
-			// Set Columns theo list datas
-			/* let columnArray;
-			if (renderedItems.length) {
-				// console.log(renderedItems);
-				columnArray = Object.keys(renderedItems[0]);
-				// .filter((key, index) => index <= 4);
-				columnArray = columnArray.map((column) => {
-					column = column.replace('_', ' ');
-					console.log(column);
-					return column.toUpperCase();
-				});
-				columnArray.push('ACTIONS');
-				// console.log(columnArray);
-			} */
-
-			// setColumns(columnArray);
-			// console.log(Object.keys(renderedItems[0]));
-			// console.log(columns);
-		}
-	}, [props.listDatas]);
+		setRows(props.rows);
+	}, [props.rows]);
 
 	// XU LY SEARCH
 	const requestSearch = () => {
-		// setSearched(e.target.value);
 		const searchInput = document.querySelector('#searchInput');
 		console.log(allStartingRows);
 		const filteredRows = allStartingRows.filter((row) => {
 			return row.title.toLowerCase().includes(searchInput.value.toLowerCase());
 		});
-		// console.log(filteredRows);
 		setRows(filteredRows);
 		setPage(0);
 	};
-
-	/* 	const cancelSearch = () => {
-		setSearched('');
-		requestSearch(searched);
-	}; */
 
 	// XU LY PAGINATION
 	const handleChangePage = (event, newPage) => {
@@ -172,8 +82,8 @@ const DataTable = (props) => {
 
 	// RENDER COLUMN FUNCTIONS
 	// VERSION dung fix cung'
-	const renderedColumns = listColumns.current ? (
-		listColumns.current.map((column, index) => (
+	const renderedColumns = columns.current ? (
+		columns.current.map((column, index) => (
 			<StyledTableCell align={column.align} key={index}>
 				{column.name}
 			</StyledTableCell>
