@@ -23,6 +23,15 @@ const images = {
 	contactUs: {
 		avatar: require('./login-hero.png').default,
 	},
+	footer:{
+		fb: require('./facebook.png').default,
+		ins: require('./instagram.png').default,
+		pin:require('./pinterest.png').default,
+		logo:require('./logo.png').default,
+	},
+	header:{
+		login:require('./User.png').default,
+	}
 };
 
 export default images;
