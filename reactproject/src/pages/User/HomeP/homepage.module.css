@@ -20,8 +20,8 @@
     position: relative;
     /*width: 1304px;*/
     /*height: 794px;*/
-    /*left: -12px;*/
-    /*top: -7px;*/
+    left: 0px;
+    top: 0px;
 
     background: linear-gradient(0deg, rgba(128, 128, 128, 0.6), rgba(128, 128, 128, 0.6));
     background-blend-mode: multiply, normal;
@@ -89,78 +89,74 @@
     width: 1243px;
     height: 2312px;
     left: 77px;
-    top: 250px;
+    top: 400px;
 
     background-image: url("../../../assets/campaign_bg.png");
     background-repeat: no-repeat;
     background-position: center center;
 }
 
-.campaign-1 {
+.campaign1 {
     /* Rectangle 1178 */
 
     position: absolute;
-    /*width: 420px;*/
-    /*height: 320px;*/
+    width: 420px;
+    height: 320px;
     left: 150px;
     top: 0px;
 
     border-radius: 16px;
 
-    /* Inside Auto Layout */
     flex: none;
     order: 0;
     flex-grow: 0;
     margin: 0px 48px;
 }
 
-.campaign-2 {
+ .campaign2 {
     position: absolute;
-    /*width: 420px;*/
-    /*height: 320px;*/
+    width: 420px;
+    height: 320px;
     left: 150px;
     top: 0px;
 
     border-radius: 16px;
 
-    /* Inside Auto Layout */
     flex: none;
     order: 0;
     flex-grow: 0;
     margin: 0px 48px;
 }
 
-.campaign-3 {
+.campaign3 {
     position: absolute;
-    /*width: 420px;*/
-    /*height: 320px;*/
+    width: 420px;
+    height: 320px;
     left: 150px;
     top: 0px;
 
     border-radius: 16px;
 
-    /* Inside Auto Layout */
     flex: none;
     order: 0;
     flex-grow: 0;
     margin: 0px 48px;
 }
 
-.campaign-4 {
+.campaign4 {
     position: absolute;
-    /*width: 420px;*/
-    /*height: 320px;*/
+    width: 420px;
+    height: 320px;
     left: 150px;
     top: 0px;
 
     border-radius: 16px;
 
-    /* Inside Auto Layout */
     flex: none;
     order: 0;
     flex-grow: 0;
     margin: 0px 48px;
-}
+} 
 
 .text1 {
     /* Title Campaign */
@@ -168,7 +164,7 @@
     position: relative;
     width: 358px;
     height: 24px;
-    left: -150px;
+    left: 500px;
     top: 0px;
 
     font-family: Inter;
@@ -194,7 +190,7 @@
     position: relative;
     width: 358px;
     height: 126px;
-    left: 200px;
+    left: 500px;
     top: 32px;
 
     /* Body/Regular */
@@ -250,7 +246,30 @@
     margin: -15px -15px;
 }
 
-.campaign-1-2 {
+.campaign11 {
+    /* Auto Layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+
+    position: relative;
+    width: 358px;
+    height: 251px;
+    left: 200px;
+    top: 0px;
+
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 0px 48px;
+}
+
+.campaign12 {
     /* Frame 166 */
     float: right;
     /* Auto Layout */
@@ -264,7 +283,7 @@
     width: 281px;
     height: 45px;
     left: 500px;
-    top: 206px;
+    top: 30px;
 
     /* Primary */
 
@@ -283,7 +302,7 @@
 .a2 {
     clear: both;
     position: relative;
-    top: 225px;
+    top: 100px;
 }
 
 .a1 {
@@ -294,13 +313,13 @@
 .a3 {
     clear: both;
     position: relative;
-    top: 500px;
+    top: 100px;
 }
 
 .a4 {
     clear: both;
     position: relative;
-    top: 750px;
+    top: 250px;
 }
 
 button {
@@ -332,7 +351,7 @@ button {
 
 }
 
-.event-1 {
+.event1 {
     /* Auto Layout */
 
     display: flex;
@@ -354,7 +373,7 @@ button {
     margin: 48px 0px;
 }
 
-.event-1-2 {
+.event12 {
     /* Card */
 
 
