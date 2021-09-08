@@ -23,6 +23,15 @@ const images = {
 	contactUs: {
 		avatar: require('./login-hero.png').default,
 	},
+	homepage:{
+		Healthy_food : require('./Healthy_food.png').default,
+		Rectangle : require('./Rectangle 1178.png').default,
+		campaign : require('./campaign_bg.png').default,
+		event1 : require('./event1.png').default,
+		event2 : require('./event2.png').default,
+		event3 : require('./event3.png').default,
+		camp : require('./img_camp_2.png').default,
+	}
 };
 
 export default images;

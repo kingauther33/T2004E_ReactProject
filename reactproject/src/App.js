@@ -31,7 +31,7 @@ function App() {
 					<Route path="/events" component={Events} />
 					<Route path="/recipes" component={Recipes} />
 
-					{/* Làm Page Lỗi */}
+					{/* Làm HomeP Lỗi */}
 					<Route path="/404">
 						<Error404 />
 					</Route>

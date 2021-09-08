@@ -1,0 +1,387 @@
+.center {
+    /* Make your life Better */
+    position: absolute;
+    width: 720px;
+    height: 108px;
+    left: 280px;
+    top: 375px;
+
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 72px;
+    line-height: 150%;
+    /* identical to box height, or 108px */
+    color: #FFFFFF;
+}
+
+.top {
+    /* Rectangle 1187 */
+    position: relative;
+    /*width: 1304px;*/
+    /*height: 794px;*/
+    /*left: -12px;*/
+    /*top: -7px;*/
+
+    background: linear-gradient(0deg, rgba(128, 128, 128, 0.6), rgba(128, 128, 128, 0.6));
+    background-blend-mode: multiply, normal;
+    filter: blur(0px);
+}
+
+.title1 {
+    /* Campaign */
+
+    position: absolute;
+    width: 263px;
+    height: 58px;
+    left: 600px;
+    top: 950px;
+
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 58px;
+    /* identical to box height */
+
+    text-align: center;
+
+    color: #333333;
+
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 48px 0px;
+}
+
+.title2 {
+    position: absolute;
+    /*width: 263px;*/
+    /*height: 58px;*/
+    left: 665px;
+    top: 2900px;
+
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 58px;
+    /* identical to box height */
+
+    text-align: center;
+
+    color: #333333;
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 48px 0px;
+}
+
+.campaign {
+    /* campaign-bg */
+    position: relative;
+    width: 1243px;
+    height: 2312px;
+    left: 77px;
+    top: 250px;
+
+    background-image: url("../../../assets/campaign_bg.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.campaign-1 {
+    /* Rectangle 1178 */
+
+    position: absolute;
+    /*width: 420px;*/
+    /*height: 320px;*/
+    left: 150px;
+    top: 0px;
+
+    border-radius: 16px;
+
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 48px;
+}
+
+.campaign-2 {
+    position: absolute;
+    /*width: 420px;*/
+    /*height: 320px;*/
+    left: 150px;
+    top: 0px;
+
+    border-radius: 16px;
+
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 48px;
+}
+
+.campaign-3 {
+    position: absolute;
+    /*width: 420px;*/
+    /*height: 320px;*/
+    left: 150px;
+    top: 0px;
+
+    border-radius: 16px;
+
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 48px;
+}
+
+.campaign-4 {
+    position: absolute;
+    /*width: 420px;*/
+    /*height: 320px;*/
+    left: 150px;
+    top: 0px;
+
+    border-radius: 16px;
+
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 48px;
+}
+
+.text1 {
+    /* Title Campaign */
+    float: right;
+    position: relative;
+    width: 358px;
+    height: 24px;
+    left: -150px;
+    top: 0px;
+
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 24px;
+
+    /* Gray 1 */
+
+    color: #333333;
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 8px 0px;
+}
+
+.text2 {
+    float: right;
+    position: relative;
+    width: 358px;
+    height: 126px;
+    left: 200px;
+    top: 32px;
+
+    /* Body/Regular */
+
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 150%;
+    /* or 21px */
+
+    letter-spacing: 0.03em;
+
+    /* Neutral/7 */
+
+    color: #333333;
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 8px 0px;
+}
+
+.text3 {
+
+    position: relative;
+    width: 233px;
+    height: 21px;
+    left: 24px;
+    top: 12px;
+
+    font-family: Inter;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 150%;
+    /* identical to box height, or 21px */
+
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+
+    /* Primary */
+
+    color: #3EBE6A;
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: -15px -15px;
+}
+
+.campaign-1-2 {
+    /* Frame 166 */
+    float: right;
+    /* Auto Layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 24px;
+
+    position: relative;
+    width: 281px;
+    height: 45px;
+    left: 500px;
+    top: 206px;
+
+    /* Primary */
+
+    border: 2px solid #3EBE6A;
+    box-sizing: border-box;
+    border-radius: 24px;
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 48px 0px;
+}
+
+.a2 {
+    clear: both;
+    position: relative;
+    top: 225px;
+}
+
+.a1 {
+    position: relative;
+    top: -30px;
+}
+
+.a3 {
+    clear: both;
+    position: relative;
+    top: 500px;
+}
+
+.a4 {
+    clear: both;
+    position: relative;
+    top: 750px;
+}
+
+button {
+    /* Auto Layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 12px;
+
+    position: relative;
+    width: 198px;
+    height: 44px;
+    left: 550px;
+    top: 1200px;
+
+    /* Linear 1 */
+
+    background: linear-gradient(90.13deg, #8ED35E 0%, #3EBE6A 101.33%);
+    border-radius: 8px;
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 4;
+    flex-grow: 0;
+    margin: 0px 0px;
+
+}
+
+.event-1 {
+    /* Auto Layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+
+    position: static;
+    width: 960px;
+    height: 387px;
+    left: 160px;
+    top: 184px;
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 48px 0px;
+}
+
+.event-1-2 {
+    /* Card */
+
+
+    /* Auto Layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px 0px 32px;
+
+    position: relative;
+    width: 304px;
+    height: 387px;
+    left: 0px;
+    top: 0px;
+
+    /* Neutral/1 */
+
+    background: #FFFFFF;
+    box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.04);
+    border-radius: 12px;
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 1;
+    margin: 0px 24px;
+}

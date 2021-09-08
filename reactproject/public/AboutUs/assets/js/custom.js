@@ -4,7 +4,7 @@ jQuery( document ).ready(function( $ ) {
 	"use strict";
 
 
-        // Page loading animation
+        // HomeP loading animation
 
         $("#preloader").animate({
             'opacity': '0'

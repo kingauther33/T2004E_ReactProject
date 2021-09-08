@@ -11,6 +11,7 @@ import AboutUs from '../pages/User/AboutUs';
 import Campaigns from '../pages/User/Campaigns';
 import ContactUs from '../pages/User/ContactUs';
 import Recipes from '../pages/User/Recipes';
+import HomeP from '../pages/User/HomeP';
 
 // ADMIN
 import AdminDashboard from '../pages/Admin/Dashboard/dashboard';
@@ -105,6 +106,11 @@ const DemoRoute = {
 	layout: AdminLayout,
 	page: Demo,
 };
+const HomeRoute = {
+	path: '/home',
+	layout: UserLayout,
+	page: HomeP,
+};
 
 export const routes = [
 	LoginCallBackRoute,
@@ -112,6 +118,7 @@ export const routes = [
 	ContactUsRoute,
 	EventsRoute,
 	RecipesRoute,
+	HomeRoute,
 
 	AdminDashboardRoute,
 
