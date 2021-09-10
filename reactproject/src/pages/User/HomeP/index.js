@@ -95,19 +95,41 @@ const HomeP = (props) => {
                     </div>
                 </div>
 
-                <button type="button">See all</button>
+                <button type="button" className={styles['button1']}>See all</button>
 
             </div>
 
             <h1 className={styles['title2']}>Events</h1>
 
-            <div className={styles['event1']}>
+            <div className={styles['event']}>
                 <div className={styles['event1']}>
-                    <img src={images.homepage.event1} alt="event1"/>
+                    <div className={styles['event11']}>
+                        <img src={images.homepage.event1} alt="event1"/>
+                    </div>
+                    <div className={styles['event12']}>
+                        <h4>Event 1</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet,</p>
+                    </div>
                 </div>
-                <div className={styles['event12']}>
-                    <h4>Event 1</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet,</p>
+
+                <div className={styles['event2']}>
+                    <div className={styles['event21']}>
+                        <img src={images.homepage.event2} alt="event1"/>
+                    </div>
+                    <div className={styles['event22']}>
+                        <h4>Event 1</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet,</p>
+                    </div>
+                </div>
+
+                <div className={styles['event3']}>
+                    <div className={styles['event31']}>
+                        <img src={images.homepage.event3} alt="event1"/>
+                    </div>
+                    <div className={styles['event32']}>
+                        <h4>Event 1</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet,</p>
+                    </div>
                 </div>
             </div>
         </div>
