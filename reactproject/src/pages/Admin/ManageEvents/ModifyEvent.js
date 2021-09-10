@@ -2,22 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { Form, Formik, Field, FieldArray, ErrorMessage } from 'formik';
 import { makeStyles } from '@material-ui/core/styles';
 import * as Yup from 'yup';
-import {
-	FormControl,
-	Typography,
-	InputLabel,
-	Input,
-	FormHelperText,
-	Box,
-	FilledInput,
-	OutlinedInput,
-	TextField,
-	Card,
-	CardContent,
-	Button,
-	Grid,
-	Snackbar,
-} from '@material-ui/core';
+import { Typography, Box, Card, CardContent } from '@material-ui/core';
 import { withRouter, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { API } from './../../../API/index';
@@ -43,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const ModifyCampaign = (props) => {
+const ModifyEvent = (props) => {
 	const [data, setData] = useState([]);
 	const { id } = useParams();
 	const context = useContext(DataContext);
@@ -75,9 +60,6 @@ const ModifyCampaign = (props) => {
 			.max(50, 'Too Long!')
 			.required('Required!'),
 		image: Yup.mixed().required('You need to provide image!'),
-		/* 	.test('fileSize', 'The file is too large', (value) => {
-				return value && value[0].size <= 2000000;
-			}) */
 		content: Yup.string()
 			.min('15', 'Too Short!')
 			.max('1000', 'Too Long!')
@@ -151,11 +133,6 @@ const ModifyCampaign = (props) => {
 					<CardContent className="m-2">
 						<Formik
 							initialValues={initialValues}
-							/* onSubmit={(values) => {
-								setTimeout(() => {
-									alert(JSON.stringify(values, null, 2));
-								}, 500);
-							}} */
 							onSubmit={handleSubmit}
 							validationSchema={validationSchema}
 						>
@@ -193,17 +170,6 @@ const ModifyCampaign = (props) => {
 											touched={touched.image}
 											setFieldValue={setFieldValue}
 										/>
-
-										{/* UPLOAD DEMO
-
-											<div className="col-3">
-											<button
-												type="button"
-												className="btn btn-primary"
-												onClick={fileUploadHandler}
-											>
-												Upload File
-											</button> */}
 										{/* CONTENT */}
 										<CKEditorInput
 											title="Content"
@@ -270,4 +236,4 @@ const ModifyCampaign = (props) => {
 	);
 };
 
-export default withRouter(ModifyCampaign);
+export default withRouter(ModifyEvent);

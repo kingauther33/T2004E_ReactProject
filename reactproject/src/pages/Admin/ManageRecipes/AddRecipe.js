@@ -1,7 +1,22 @@
 import React, { useState, useRef } from 'react';
 import { Form, Formik, Field, FieldArray, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { Box, Card, CardContent } from '@material-ui/core';
+import {
+	Box,
+	FilledInput,
+	FormControl,
+	FormHelperText,
+	Input,
+	InputLabel,
+	OutlinedInput,
+	TextField,
+	Typography,
+	Card,
+	CardContent,
+	Button,
+	Grid,
+	Snackbar,
+} from '@material-ui/core';
 import MuiAlert from '@material-ui/lab/Alert';
 
 import axios from 'axios';
@@ -18,7 +33,7 @@ function Alert(props) {
 	return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-const AddEvent = () => {
+const AddRecipe = () => {
 	// INITIAL STATES AND REFS
 	const [selectedFile, setSelectedFile] = useState(null);
 	const [notification, setNotification] = useState({
@@ -210,4 +225,4 @@ const AddEvent = () => {
 	);
 };
 
-export default AddEvent;
+export default AddRecipe;

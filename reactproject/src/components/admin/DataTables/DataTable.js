@@ -65,7 +65,9 @@ const DataTable = (props) => {
 		const searchInput = document.querySelector('#searchInput');
 		console.log(allStartingRows);
 		const filteredRows = allStartingRows.filter((row) => {
-			return row.title.toLowerCase().includes(searchInput.value.toLowerCase());
+			return 'title' in row
+				? row.title.toLowerCase().includes(searchInput.value.toLowerCase())
+				: row.name.toLowerCase().includes(searchInput.value.toLowerCase());
 		});
 		setRows(filteredRows);
 		props.setPage(0);

@@ -28,6 +28,8 @@ import ModifyEvent from '../pages/Admin/ManageEvents/ModifyEvent';
 
 // RECIPES
 import ManageRecipes from '../pages/Admin/ManageRecipes';
+import AddRecipe from '../pages/Admin/ManageRecipes/AddRecipe';
+import ModifyRecipe from '../pages/Admin/ManageRecipes/ModifyRecipe';
 
 // CATEGORIES
 import ManageCategories from '../pages/Admin/ManageCategories';
@@ -122,6 +124,18 @@ const ManageRecipesRoute = {
 	page: ManageRecipes,
 };
 
+const ModifyRecipeRoute = {
+	path: '/manage-recipes/:id',
+	layout: AdminLayout,
+	page: ModifyRecipe,
+};
+
+const AddRecipeRoute = {
+	path: '/manage-recipes/add-recipe',
+	layout: AdminLayout,
+	page: AddRecipe,
+};
+
 // CATEGORIES
 const ManageCategoriesRoute = {
 	path: '/manage-categories',
@@ -180,5 +194,8 @@ export const routes = [
 
 	// ADMIN RECIPES
 	ManageRecipesRoute,
+	AddRecipeRoute,
+	ModifyRecipeRoute,
+
 	DemoRoute,
 ];
