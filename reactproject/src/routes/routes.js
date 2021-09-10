@@ -15,12 +15,26 @@ import HomeP from '../pages/User/HomeP';
 
 // ADMIN
 import AdminDashboard from '../pages/Admin/Dashboard/dashboard';
+
+// CAMPAIGNS
 import ManageCampaigns from '../pages/Admin/ManageCampaigns';
-import ModifyCampaigns from '../pages/Admin/ManageCampaigns/ModifyCampaign';
+import ModifyCampaign from '../pages/Admin/ManageCampaigns/ModifyCampaign';
 import AddCampaign from './../pages/Admin/ManageCampaigns/AddCampaign';
+
+// EVENTS
 import ManageEvents from '../pages/Admin/ManageEvents';
+import AddEvent from '../pages/Admin/ManageEvents/AddEvent';
+import ModifyEvent from '../pages/Admin/ManageEvents/ModifyEvent';
+
+// RECIPES
 import ManageRecipes from '../pages/Admin/ManageRecipes';
+import AddRecipe from '../pages/Admin/ManageRecipes/AddRecipe';
+import ModifyRecipe from '../pages/Admin/ManageRecipes/ModifyRecipe';
+
+// CATEGORIES
 import ManageCategories from '../pages/Admin/ManageCategories';
+import ModifyCategory from '../pages/Admin/ManageCategories/ModifyCategory';
+import AddCategory from '../pages/Admin/ManageCategories/AddCategory';
 import Demo from '../pages/Demo';
 
 const LoginCallBackRoute = {
@@ -65,16 +79,17 @@ const AdminDashboardRoute = {
 	page: AdminDashboard,
 };
 
+// CAMPAIGNS
 const ManageCampaignsRoute = {
 	path: '/manage-campaigns',
 	layout: AdminLayout,
 	page: ManageCampaigns,
 };
 
-const ModifyCampaignsRoute = {
+const ModifyCampaignRoute = {
 	path: '/manage-campaigns/:id',
 	layout: AdminLayout,
-	page: ModifyCampaigns,
+	page: ModifyCampaign,
 };
 
 const AddCampaignRoute = {
@@ -83,22 +98,61 @@ const AddCampaignRoute = {
 	page: AddCampaign,
 };
 
+// EVENTS
 const ManageEventsRoute = {
 	path: '/manage-events',
 	layout: AdminLayout,
 	page: ManageEvents,
 };
 
+const ModifyEventRoute = {
+	path: '/manage-events/:id',
+	layout: AdminLayout,
+	page: ModifyEvent,
+};
+
+const AddEventRoute = {
+	path: '/manage-events/add-event',
+	layout: AdminLayout,
+	page: AddEvent,
+};
+
+// RECIPES
 const ManageRecipesRoute = {
 	path: '/manage-recipes',
 	layout: AdminLayout,
 	page: ManageRecipes,
 };
 
+const ModifyRecipeRoute = {
+	path: '/manage-recipes/:id',
+	layout: AdminLayout,
+	page: ModifyRecipe,
+};
+
+const AddRecipeRoute = {
+	path: '/manage-recipes/add-recipe',
+	layout: AdminLayout,
+	page: AddRecipe,
+};
+
+// CATEGORIES
 const ManageCategoriesRoute = {
 	path: '/manage-categories',
 	layout: AdminLayout,
 	page: ManageCategories,
+};
+
+const ModifyCategoryRoute = {
+	path: '/manage-categories/:id',
+	layout: AdminLayout,
+	page: ModifyCategory,
+};
+
+const AddCategoryRoute = {
+	path: '/manage-categories/add-category',
+	layout: AdminLayout,
+	page: AddCategory,
 };
 
 const DemoRoute = {
@@ -119,17 +173,29 @@ export const routes = [
 	EventsRoute,
 	RecipesRoute,
 	HomeRoute,
+	CampaignsRoute,
 
 	AdminDashboardRoute,
 
-	// ADMIN Campaigns
-	CampaignsRoute,
-	AddCampaignRoute,
-	ModifyCampaignsRoute,
-
+	// ADMIN CAMPAIGNS
 	ManageCampaignsRoute,
-	ManageEventsRoute,
-	ManageRecipesRoute,
+	AddCampaignRoute,
+	ModifyCampaignRoute,
+
+	// ADMIN CATEGORIES
 	ManageCategoriesRoute,
+	AddCategoryRoute,
+	ModifyCategoryRoute,
+
+	// ADMIN EVENTS
+	ManageEventsRoute,
+	AddEventRoute,
+	ModifyEventRoute,
+
+	// ADMIN RECIPES
+	ManageRecipesRoute,
+	AddRecipeRoute,
+	ModifyRecipeRoute,
+
 	DemoRoute,
 ];

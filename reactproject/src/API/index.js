@@ -1,6 +1,7 @@
 const base_url = 'https://localhost:44313';
 
 export const API = {
+	// CAMPAIGNS
 	campaigns: {
 		url: base_url + '/api/Campaigns',
 		params: {},
@@ -11,6 +12,7 @@ export const API = {
 		params: JSON.stringify({
 			title: '',
 			description: '',
+			image: null,
 			content: '',
 			totalDonation: 0,
 			sponsor: '',
@@ -30,9 +32,79 @@ export const API = {
 			id: 0,
 			title: '',
 			description: '',
+			image: null,
 			content: '',
 			totalDonation: 0,
 			sponsor: '',
+			startDate: '',
+			endDate: '',
+		}),
+		method: 'PUT',
+	},
+
+	// CATEGORIES
+	categories: {
+		url: base_url + '/api/Categories',
+		params: {},
+		method: 'GET',
+	},
+	add_category: {
+		url: base_url + '/api/Categories',
+		params: JSON.stringify({
+			name: '',
+			image: null,
+		}),
+		method: 'POST',
+	},
+	delete_category: {
+		url: base_url + '/api/Categories/', // + id
+		params: {},
+		method: 'DELETE',
+	},
+	edit_category: {
+		url: base_url + '/api/Categories/', // + id
+		params: JSON.stringify({
+			name: '',
+			image: null,
+		}),
+		method: 'PUT',
+	},
+
+	// EVENTS
+	events: {
+		url: base_url + '/api/Events',
+		params: {},
+		method: 'GET',
+	},
+	add_event: {
+		url: base_url + '/api/Events',
+		params: JSON.stringify({
+			title: '',
+			description: '',
+			image: null,
+			content: '',
+			organizer: '',
+			location: '',
+			startDate: '',
+			endDate: '',
+		}),
+		method: 'POST',
+	},
+	delete_event: {
+		url: base_url + '/api/Events/', // + id
+		params: {},
+		method: 'DELETE',
+	},
+	edit_event: {
+		url: base_url + '/api/Events/', // + id
+		params: JSON.stringify({
+			id: 0,
+			title: '',
+			description: '',
+			image: null,
+			content: '',
+			organizer: '',
+			location: '',
 			startDate: '',
 			endDate: '',
 		}),

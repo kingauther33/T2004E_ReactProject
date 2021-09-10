@@ -16,6 +16,13 @@ const images = {
 		user6_128x128: require('./user6_128x128.jpg').default,
 		user7_128x128: require('./user7_128x128.jpg').default,
 		user8_128x128: require('./user8_128x128.jpg').default,
+		Healthy_food: require('./Healthy_food.png').default,
+		Rectangle: require('./Rectangle 1178.png').default,
+		campaign: require('./campaign_bg.png').default,
+		event1: require('./event1.png').default,
+		event2: require('./event2.png').default,
+		event3: require('./event3.png').default,
+		camp: require('./img_camp_2.png').default,
 	},
 	aboutUs: {
 		heading_bg: require('./heading-bg.jpg').default,
@@ -24,26 +31,25 @@ const images = {
 		avatar: require('./login-hero.png').default,
 	},
 
-	footer:{
+	footer: {
 		fb: require('./facebook.png').default,
 		ins: require('./instagram.png').default,
-		pin:require('./pinterest.png').default,
-		logo:require('./logo.png').default,
+		pin: require('./pinterest.png').default,
+		logo: require('./logo.png').default,
 	},
 	header: {
 		login: require('./User.png').default,
 	},
 
-	homepage:{
-		Healthy_food : require('./Healthy_food.png').default,
-		Rectangle : require('./Rectangle 1178.png').default,
-		campaign : require('./campaign_bg.png').default,
-		event1 : require('./event1.png').default,
-		event2 : require('./event2.png').default,
-		event3 : require('./event3.png').default,
-		camp : require('./img_camp_2.png').default,
-
-	}
+	homepage: {
+		Healthy_food: require('./Healthy_food.png').default,
+		Rectangle: require('./Rectangle 1178.png').default,
+		campaign: require('./campaign_bg.png').default,
+		event1: require('./event1.png').default,
+		event2: require('./event2.png').default,
+		event3: require('./event3.png').default,
+		camp: require('./img_camp_2.png').default,
+	},
 };
 
 export default images;
