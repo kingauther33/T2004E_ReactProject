@@ -18,10 +18,10 @@
 .top {
     /* Rectangle 1187 */
     position: relative;
-    /*width: 1304px;*/
-    /*height: 794px;*/
-    left: 0px;
-    top: 0px;
+    width: 1304px;
+    height: 794px;
+    left: 100px;
+    top: 110px;
 
     background: linear-gradient(0deg, rgba(128, 128, 128, 0.6), rgba(128, 128, 128, 0.6));
     background-blend-mode: multiply, normal;
