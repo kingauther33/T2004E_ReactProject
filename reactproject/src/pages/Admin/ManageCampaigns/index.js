@@ -19,8 +19,8 @@ const columns = [
 	{ name: 'Title', align: 'left' },
 	{ name: 'Description', align: 'left' },
 	{ name: 'Image', align: 'left' },
-	{ name: 'Content', align: 'left' },
-	{ name: 'TotalDonation', align: 'left' },
+	// { name: 'Content', align: 'left' },
+	{ name: 'Total Donation', align: 'left' },
 	{ name: 'Sponsor', align: 'left' },
 	{ name: 'Start Date', align: 'left' },
 	{ name: 'End Date', align: 'left' },
@@ -32,6 +32,7 @@ const ManageCampains = (props) => {
 	const [listDatas, setListDatas] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [rows, setRows] = useState([]);
+	const [page, setPage] = useState(0);
 	const context = useContext(DataContext);
 	const thisLocation = useRef(window.location.pathname);
 	const [notification, setNotification] = useState({
@@ -125,7 +126,28 @@ const ManageCampains = (props) => {
 					</div>
 				);
 
-				return item;
+				let {
+					id,
+					title,
+					description,
+					image,
+					totalDonation,
+					sponsor,
+					startDate,
+					endDate,
+					action,
+				} = item;
+				return {
+					id,
+					title,
+					description,
+					image,
+					totalDonation,
+					sponsor,
+					startDate,
+					endDate,
+					action,
+				};
 			});
 			setRows(rowArray);
 		}
@@ -135,7 +157,7 @@ const ManageCampains = (props) => {
 	return (
 		<AdminContent>
 			<LoadingEffect loading={loading} />
-			<DataTable rows={rows} columns={columns} />
+			<DataTable rows={rows} columns={columns} page={page} setPage={setPage} />
 			<div className="mt-5 d-flex justify-content-between">
 				<Button variant="contained" startIcon={<i className="fa fa-plus"></i>}>
 					<Link to="/manage-campaigns/add-campaign">Add New</Link>

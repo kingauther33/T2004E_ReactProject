@@ -12,6 +12,7 @@ export const API = {
 		params: JSON.stringify({
 			title: '',
 			description: '',
+			image: null,
 			content: '',
 			totalDonation: 0,
 			sponsor: '',
@@ -31,6 +32,7 @@ export const API = {
 			id: 0,
 			title: '',
 			description: '',
+			image: null,
 			content: '',
 			totalDonation: 0,
 			sponsor: '',
@@ -49,13 +51,8 @@ export const API = {
 	add_category: {
 		url: base_url + '/api/Categories',
 		params: JSON.stringify({
-			title: '',
-			description: '',
-			content: '',
-			totalDonation: 0,
-			sponsor: '',
-			startDate: '',
-			endDate: '',
+			name: '',
+			image: null,
 		}),
 		method: 'POST',
 	},
@@ -67,12 +64,47 @@ export const API = {
 	edit_category: {
 		url: base_url + '/api/Categories/', // + id
 		params: JSON.stringify({
+			name: '',
+			image: null,
+		}),
+		method: 'PUT',
+	},
+
+	// EVENTS
+	events: {
+		url: base_url + '/api/Events',
+		params: {},
+		method: 'GET',
+	},
+	add_event: {
+		url: base_url + '/api/Events',
+		params: JSON.stringify({
+			title: '',
+			description: '',
+			image: null,
+			content: '',
+			organizer: '',
+			location: '',
+			startDate: '',
+			endDate: '',
+		}),
+		method: 'POST',
+	},
+	delete_event: {
+		url: base_url + '/api/Events/', // + id
+		params: {},
+		method: 'DELETE',
+	},
+	edit_event: {
+		url: base_url + '/api/Events/', // + id
+		params: JSON.stringify({
 			id: 0,
 			title: '',
 			description: '',
+			image: null,
 			content: '',
-			totalDonation: 0,
-			sponsor: '',
+			organizer: '',
+			location: '',
 			startDate: '',
 			endDate: '',
 		}),

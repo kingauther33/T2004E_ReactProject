@@ -18,6 +18,7 @@ const columns = [
 	{ name: 'ID', align: 'left' },
 	{ name: 'Name', align: 'left' },
 	{ name: 'Image', align: 'left' },
+	{ name: 'Actions', align: 'left' },
 ];
 
 // Main FUNCTION
@@ -25,6 +26,7 @@ const ManageCategories = (props) => {
 	const [listDatas, setListDatas] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [rows, setRows] = useState([]);
+	const [page, setPage] = useState(0);
 	const context = useContext(DataContext);
 	const thisLocation = useRef(window.location.pathname);
 	const [notification, setNotification] = useState({
@@ -85,6 +87,7 @@ const ManageCategories = (props) => {
 			};
 
 			fetchData();
+			setPage(0);
 		};
 
 		const handleEdit = (item) => {
@@ -118,7 +121,8 @@ const ManageCategories = (props) => {
 					</div>
 				);
 
-				return item;
+				let { id, name, image, action } = item;
+				return { id, name, image, action };
 			});
 			setRows(rowArray);
 		}
@@ -128,10 +132,10 @@ const ManageCategories = (props) => {
 	return (
 		<AdminContent>
 			<LoadingEffect loading={loading} />
-			<DataTable rows={rows} columns={columns} />
+			<DataTable rows={rows} columns={columns} page={page} setPage={setPage} />
 			<div className="mt-5 d-flex justify-content-between">
 				<Button variant="contained" startIcon={<i className="fa fa-plus"></i>}>
-					<Link to="/manage-campaigns/add-campaign">Add New</Link>
+					<Link to="/manage-categories/add-category">Add New</Link>
 				</Button>
 			</div>
 			<SnackbarPopup notification={notification} setNotification={setNotification} />

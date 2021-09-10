@@ -48,7 +48,8 @@ const useStyles = makeStyles({
 // MAIN FUNCTION
 const DataTable = (props) => {
 	// CAC STATE TRONG FUNCTIONS
-	const [page, setPage] = React.useState(0);
+	// const [page, setPage] = React.useState(0);
+	let page = props.page;
 	const [rowsPerPage, setRowsPerPage] = React.useState(5);
 	const [rows, setRows] = useState(props.rows);
 	const columns = useRef(props.columns);
@@ -67,17 +68,17 @@ const DataTable = (props) => {
 			return row.title.toLowerCase().includes(searchInput.value.toLowerCase());
 		});
 		setRows(filteredRows);
-		setPage(0);
+		props.setPage(0);
 	};
 
 	// XU LY PAGINATION
 	const handleChangePage = (event, newPage) => {
-		setPage(newPage);
+		props.setPage(newPage);
 	};
 
 	const handleChangeRowsPerPage = (event) => {
 		setRowsPerPage(parseInt(event.target.value, 10));
-		setPage(0);
+		props.setPage(0);
 	};
 
 	// RENDER COLUMN FUNCTIONS
@@ -137,27 +138,29 @@ const DataTable = (props) => {
 			: rows
 		).map((row, index) => (
 			<StyledTableRow key={index * Math.random()}>
-				{/* <StyledTableCell component="th" scope="row">
-					{row.name}
-				</StyledTableCell> */}
-				{Object.keys(row).map((key, index) =>
-					key !== 'campaignComments' ? (
-						<StyledTableCell
-							key={index}
-							align="left"
-							className={
-								key === 'content' ? styles['over__text'] : styles['over__textNormal']
-							}
-							// className={styles['over__text']}
-						>
-							{/* {key === 'content' ? parse(row[key]) : row[key]} */}
-							{checkRenderdRow(row, key)}
-							{console.log(row)}
-						</StyledTableCell>
-					) : (
-						''
-					)
-				)}
+				<StyledTableCell component="th" scope="row">
+					{index + 1}
+				</StyledTableCell>
+				{Object.keys(row)
+					.filter((key) => key !== 'id')
+					.map((key, index) =>
+						key !== 'campaignComments' ? (
+							<StyledTableCell
+								key={index}
+								align="left"
+								className={
+									key === 'content' ? styles['over__text'] : styles['over__textNormal']
+								}
+								// className={styles['over__text']}
+							>
+								{/* {key === 'content' ? parse(row[key]) : row[key]} */}
+								{checkRenderdRow(row, key)}
+								{console.log(row)}
+							</StyledTableCell>
+						) : (
+							''
+						)
+					)}
 				{/* <StyledTableCell align="right">{row.name}</StyledTableCell>
 				<StyledTableCell align="right">{row.diameter}</StyledTableCell>
 				<StyledTableCell align="right">{row.terrain}</StyledTableCell>

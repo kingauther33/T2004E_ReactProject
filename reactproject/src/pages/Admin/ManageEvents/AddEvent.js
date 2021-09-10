@@ -19,13 +19,6 @@ import {
 } from '@material-ui/core';
 import MuiAlert from '@material-ui/lab/Alert';
 
-// CK EDITOR + HTML PARSER + DATETIME PICKER
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import parse from 'html-react-parser';
-import DateTimePicker from 'react-datetime-picker';
-import { format } from 'date-fns';
-
 import axios from 'axios';
 import { API } from '../../../API';
 import AdminContent from './../../../components/admin/Content/index';
@@ -40,7 +33,7 @@ function Alert(props) {
 	return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-const AddCategory = () => {
+const AddEvent = () => {
 	// INITIAL STATES AND REFS
 	const [selectedFile, setSelectedFile] = useState(null);
 	const [notification, setNotification] = useState({
@@ -48,21 +41,46 @@ const AddCategory = () => {
 		isSuccess: true,
 		isOpen: false,
 	});
-	// const imageRef = useRef();
 
 	//INITIAL FORM VALUES
 	const initialValues = {
-		name: '',
+		title: '',
+		description: '',
 		image: null,
+		content: '', // CKEDITOR
+		organizer: '',
+		location: '',
+		startDate: new Date(),
+		endDate: new Date(),
 	};
 
 	// VALIDATION FORM
 	const validationSchema = Yup.object().shape({
-		name: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required!'),
+		title: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required!'),
+		description: Yup.string()
+			.min(2, 'Too Short!')
+			.max(50, 'Too Long!')
+			.required('Required!'),
 		image: Yup.mixed().required('You need to provide image!'),
-		/* 	.test('fileSize', 'The file is too large', (value) => {
-				return value && value[0].size <= 2000000;
-			}) */
+		content: Yup.string()
+			.min('15', 'Too Short!')
+			.max('1000', 'Too Long!')
+			.required('Required!'), // CKEDITOR
+		organizer: Yup.string()
+			.min(2, 'Too Short!')
+			.max(50, 'Too Long!')
+			.required('Required!'),
+		location: Yup.string()
+			.min(2, 'Too Short!')
+			.max(50, 'Too Long!')
+			.required('Required!'),
+		startDate: Yup.date().min(
+			new Date('2021-01-01'),
+			'Start Date must be after 01/01/2021'
+		),
+		endDate: Yup.date()
+			.min(new Date(), `End Date must be after ${new Date().toLocaleDateString()}`)
+			.required('Required!'),
 	});
 
 	const handleSubmit = async (values) => {
@@ -71,7 +89,7 @@ const AddCategory = () => {
 		// POST FUNCTION
 		await axios
 			.post(
-				API.add_category.url,
+				API.add_event.url,
 				// formData,
 				json,
 				{
@@ -106,28 +124,32 @@ const AddCategory = () => {
 					<CardContent className="m-2">
 						<Formik
 							initialValues={initialValues}
-							/* onSubmit={(values) => {
-								setTimeout(() => {
-									alert(JSON.stringify(values, null, 2));
-								}, 500);
-							}} */
 							onSubmit={handleSubmit}
 							validationSchema={validationSchema}
 						>
 							{({ values, errors, touched, handleBlur, setFieldValue, isSubmitting }) => (
 								<Form autoComplete="off">
 									<div className="row align-items-center">
-										{/* NAME */}
+										{/* TITLE */}
 										<TextInput
-											title="Name"
+											title="Title"
 											type="text"
 											fullWidth={true}
-											name="name"
-											values={values.name}
-											errors={errors.name}
-											touched={touched.name}
+											name="title"
+											values={values.title}
+											errors={errors.title}
+											touched={touched.title}
 										/>
-
+										{/* DESCRIPTION */}
+										<TextInput
+											title="Description"
+											type="text"
+											fullWidth={true}
+											name="description"
+											values={values.description}
+											errors={errors.description}
+											touched={touched.description}
+										/>
 										{/* IMAGE */}
 										<ImageInput
 											title="Image"
@@ -138,6 +160,52 @@ const AddCategory = () => {
 											errors={errors.image}
 											touched={touched.image}
 											setFieldValue={setFieldValue}
+										/>
+										<CKEditorInput
+											title="Content"
+											name="content"
+											fullWidth={false}
+											values={values.content}
+											errors={errors.content}
+											touched={touched.content}
+											setFieldValue={setFieldValue}
+										/>
+										{/* ORGANIZER */}
+										<TextInput
+											title="Organizer"
+											type="text"
+											fullWidth={true}
+											name="organizer"
+											values={values.organizer}
+											errors={errors.organizer}
+											touched={touched.organizer}
+										/>
+										{/* LOCATION */}
+										<TextInput
+											title="Location"
+											type="text"
+											fullWidth={true}
+											name="location"
+											values={values.location}
+											errors={errors.location}
+											touched={touched.location}
+										/>
+										{/* START DATE */}
+										<DateInput
+											title="Start Date"
+											name="startDate"
+											values={values.startDate}
+											errors={errors.startDate}
+											touched={touched.startDate}
+										/>
+
+										{/* END DATE */}
+										<DateInput
+											title="End Date"
+											name="endDate"
+											values={values.endDate}
+											errors={errors.endDate}
+											touched={touched.endDate}
 										/>
 
 										{/* END INPUT */}
@@ -157,4 +225,4 @@ const AddCategory = () => {
 	);
 };
 
-export default AddCategory;
+export default AddEvent;
