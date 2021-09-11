@@ -17,12 +17,13 @@ import SnackbarPopup from '../../../components/admin/SnackbarPopup';
 const columns = [
 	{ name: 'ID', align: 'left' },
 	{ name: 'Title', align: 'left' },
-	{ name: 'Description', align: 'left' },
 	{ name: 'Image', align: 'left' },
-	{ name: 'Organizer', align: 'left' },
-	{ name: 'Location', align: 'left' },
-	{ name: 'Start Date', align: 'left' },
-	{ name: 'End Date', align: 'left' },
+	{ name: 'Description', align: 'left' },
+	{ name: 'Prep Time', align: 'left' },
+	{ name: 'Cook Time', align: 'left' },
+	{ name: 'Ingredients', align: 'left' },
+	{ name: 'Tools', align: 'left' },
+	{ name: 'Category', align: 'left' },
 	{ name: 'Actions', align: 'left' },
 ];
 
@@ -32,6 +33,7 @@ const ManageRecipes = (props) => {
 	const [loading, setLoading] = useState(false);
 	const [rows, setRows] = useState([]);
 	const [page, setPage] = useState(0);
+	const [categories, setCategories] = useState([]);
 	const context = useContext(DataContext);
 	const thisLocation = useRef(window.location.pathname);
 	const [notification, setNotification] = useState({
@@ -41,12 +43,13 @@ const ManageRecipes = (props) => {
 	});
 
 	// XU LY FETCH DATA TU API
-	const handleFetchEvent = () => {
+	const handleFetchRecipe = () => {
 		const fetchData = async () => {
 			await axios
-				.get(API.events.url)
+				.get(API.recipes.url)
 				.then((respond) => {
 					setListDatas(respond.data);
+					debugger;
 				})
 				.catch((err) => {
 					console.log(err);
@@ -59,9 +62,31 @@ const ManageRecipes = (props) => {
 		setLoading(false);
 	};
 
+	const handleFetchCategory = () => {
+		const fetchCategory = async () => {
+			await axios
+				.get(API.categories.url, {
+					headers: {
+						'Content-Type': 'application/json',
+						'Access-Control-Allow-Origin': '*',
+					},
+				})
+				.then((response) => {
+					setCategories(response.data);
+					debugger;
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		};
+
+		fetchCategory();
+	};
+
 	// FUNCTION kha giong ComponentDidMount
 	useEffect(() => {
-		handleFetchEvent();
+		handleFetchRecipe();
+		handleFetchCategory();
 	}, [context]);
 
 	// FUNCTION CHAY DE TRA VE NHUNG HANG MOI KHI DATA THAY DOI
@@ -73,9 +98,9 @@ const ManageRecipes = (props) => {
 			event.preventDefault();
 			const fetchData = async () => {
 				await axios
-					.delete(API.delete_event.url + item.id)
+					.delete(API.delete_recipe.url + item.id)
 					.then((respond) => {
-						handleFetchEvent();
+						handleFetchRecipe();
 						setNotification({
 							message: 'Delete successfully!',
 							isOpen: true,
@@ -93,6 +118,7 @@ const ManageRecipes = (props) => {
 
 			fetchData();
 		};
+		debugger;
 
 		const handleEdit = (item) => {
 			context.editItem(item);
@@ -100,7 +126,6 @@ const ManageRecipes = (props) => {
 
 		if (renderedItems) {
 			rowArray = renderedItems.map((item) => {
-				const itemId = item.id;
 				item.action = (
 					<div>
 						<button
@@ -110,7 +135,7 @@ const ManageRecipes = (props) => {
 						>
 							<i className="fas fa-trash" style={{ fontSize: '16px' }}></i>
 						</button>
-						<Link to={`${thisLocation.current}/${itemId}`}>
+						<Link to={`${thisLocation.current}/${item.categoryId}`}>
 							<button
 								style={{
 									border: 'none',
@@ -125,32 +150,40 @@ const ManageRecipes = (props) => {
 					</div>
 				);
 
+				// let category = categories.filter((c) => c.id === item.categoryId);
+				item.category = categories.filter((c) => c.id === item.categoryId);
+				debugger;
+
 				let {
 					id,
 					title,
-					description,
 					image,
-					organizer,
-					location,
-					startDate,
-					endDate,
+					description,
+					prepTime,
+					cookTime,
+					ingredients,
+					tools,
 					action,
+					category,
 				} = item;
+
 				return {
 					id,
 					title,
-					description,
 					image,
-					organizer,
-					location,
-					startDate,
-					endDate,
+					description,
+					prepTime,
+					cookTime,
+					ingredients,
+					tools,
+					category,
 					action,
+					// categories[],
 				};
 			});
 			setRows(rowArray);
 		}
-	}, [listDatas, context]);
+	}, [listDatas, context, categories]);
 
 	// MAIN RETURN
 	return (
@@ -159,7 +192,7 @@ const ManageRecipes = (props) => {
 			<DataTable rows={rows} columns={columns} page={page} setPage={setPage} />
 			<div className="mt-5 d-flex justify-content-between">
 				<Button variant="contained" startIcon={<i className="fa fa-plus"></i>}>
-					<Link to="/manage-events/add-event">Add New</Link>
+					<Link to="/manage-recipes/add-recipe">Add New</Link>
 				</Button>
 			</div>
 			<SnackbarPopup notification={notification} setNotification={setNotification} />

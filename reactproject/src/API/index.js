@@ -48,6 +48,11 @@ export const API = {
 		params: {},
 		method: 'GET',
 	},
+	detail_category: {
+		url: base_url + '/api/Categories/', // + id
+		params: {},
+		method: 'GET',
+	},
 	add_category: {
 		url: base_url + '/api/Categories',
 		params: JSON.stringify({
@@ -107,6 +112,47 @@ export const API = {
 			location: '',
 			startDate: '',
 			endDate: '',
+		}),
+		method: 'PUT',
+	},
+
+	// RECIPES
+	recipes: {
+		url: base_url + '/api/Recipes',
+		params: {},
+		method: 'GET',
+	},
+	add_recipe: {
+		url: base_url + '/api/Recipes',
+		params: JSON.stringify({
+			title: '',
+			image: null,
+			description: '',
+			prepTime: '',
+			cookTime: '',
+			ingredients: '',
+			tools: '',
+			categoryId: 0,
+		}),
+		method: 'POST',
+	},
+	delete_recipe: {
+		url: base_url + '/api/Recipes/', // + id
+		params: {},
+		method: 'DELETE',
+	},
+	edit_recipe: {
+		url: base_url + '/api/Recipes/', // + id
+		params: JSON.stringify({
+			id: 0,
+			title: '',
+			image: null,
+			description: '',
+			prepTime: '',
+			cookTime: '',
+			ingredients: '',
+			tools: '',
+			categoryId: 0,
 		}),
 		method: 'PUT',
 	},

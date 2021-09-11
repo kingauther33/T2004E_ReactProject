@@ -19,6 +19,7 @@ import DataContext from './../../../store/PassData-context';
 // CK EDITOR + HTML PARSER + DATETIME PICKER
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import SelectInput from './../../../components/admin/Forms/SelectInput';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -32,6 +33,8 @@ const ModifyRecipe = (props) => {
 	const [data, setData] = useState([]);
 	const { id } = useParams();
 	const context = useContext(DataContext);
+	const [listCategories, setListCategories] = useState([]);
+	console.log(context);
 
 	const [notification, setNotification] = useState({
 		message: '',
@@ -39,46 +42,59 @@ const ModifyRecipe = (props) => {
 		isOpen: false,
 	});
 
+	const fetchCategory = async () => {
+		await axios
+			.get(API.categories.url, {
+				headers: {
+					'Content-Type': 'application/json',
+					'Access-Control-Allow-Origin': '*',
+				},
+			})
+			.then((response) => {
+				setListCategories(response.data);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+
+	useEffect(() => {
+		fetchCategory();
+	}, []);
+
 	const initialValues = {
 		id: context.item.id,
 		title: context.item.title,
-		description: context.item.description,
 		image: context.item.image,
-		content: context.item.content, // CKEDITOR
-		organizer: context.item.organizer,
-		location: context.item.location,
-		startDate: context.item.startDate,
-		endDate: context.item.endDate,
+		description: context.item.description,
+		prepTime: context.item.prepTime,
+		cookTime: context.item.cookTime,
+		ingredients: context.item.ingredients,
+		tools: context.item.tools,
+		categoryId: context.item.categoryId,
 	};
 
 	// VALIDATION FORM
 	const validationSchema = Yup.object().shape({
 		id: Yup.number(),
 		title: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required!'),
+		image: Yup.mixed().required('You need to provide image!'),
 		description: Yup.string()
 			.min(2, 'Too Short!')
 			.max(50, 'Too Long!')
 			.required('Required!'),
-		image: Yup.mixed().required('You need to provide image!'),
-		content: Yup.string()
-			.min('15', 'Too Short!')
-			.max('1000', 'Too Long!')
+		prepTime: Yup.number()
+			.test('maxDigits', 'Prep Time must be greater than 3', (number) => number >= 3)
 			.required('Required!'), // CKEDITOR
-		organizer: Yup.string()
-			.min('15', 'Too Short!')
-			.max('1000', 'Too Long!')
+		cookTime: Yup.number()
+			.test('maxDigits', 'Prep Time must be greater than 2', (number) => number >= 2)
 			.required('Required!'),
-		location: Yup.string()
+		ingredients: Yup.string()
 			.min(2, 'Too Short!')
 			.max(50, 'Too Long!')
 			.required('Required!'),
-		startDate: Yup.date().min(
-			new Date('2021-01-01'),
-			'Start Date must be after 01/01/2021'
-		),
-		endDate: Yup.date()
-			.min(new Date(), `End Date must be after ${new Date().toLocaleDateString()}`)
-			.required('Required!'),
+		tools: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required!'),
+		categoryId: Yup.mixed().required('Required!'),
 	});
 
 	// FUNCTION kha giong ComponentDidMount
@@ -97,7 +113,7 @@ const ModifyRecipe = (props) => {
 		// PUT FUNCTION
 		await axios
 			.put(
-				API.edit_event.url + context.item.id,
+				API.edit_recipe.url + context.item.id,
 				// formData,
 				json,
 				{
@@ -149,16 +165,6 @@ const ModifyRecipe = (props) => {
 											errors={errors.title}
 											touched={touched.title}
 										/>
-										{/* DESCRIPTION */}
-										<TextInput
-											title="Description"
-											type="text"
-											fullWidth={true}
-											name="description"
-											values={values.description}
-											errors={errors.description}
-											touched={touched.description}
-										/>
 										{/* IMAGE */}
 										<ImageInput
 											title="Image"
@@ -170,53 +176,66 @@ const ModifyRecipe = (props) => {
 											touched={touched.image}
 											setFieldValue={setFieldValue}
 										/>
-										{/* CONTENT */}
-										<CKEditorInput
-											title="Content"
-											name="content"
-											// type="none"
+										{/* DESCRIPTION */}
+										<TextInput
+											title="Description"
+											type="text"
+											fullWidth={true}
+											name="description"
+											values={values.description}
+											errors={errors.description}
+											touched={touched.description}
+										/>
+										{/* PREP TIME */}
+										<TextInput
+											title="Prep Time"
+											type="number"
 											fullWidth={false}
-											values={values.content}
-											errors={errors.content}
-											touched={touched.content}
-											setFieldValue={setFieldValue}
+											name="prepTime"
+											values={values.prepTime}
+											errors={errors.prepTime}
+											touched={touched.prepTime}
 										/>
-										{/* ORGANIZER */}
+										{/* COOK TIME */}
 										<TextInput
-											title="Organizer"
+											title="Cook Time"
+											type="number"
+											fullWidth={false}
+											name="cookTime"
+											values={values.cookTime}
+											errors={errors.cookTime}
+											touched={touched.cookTime}
+										/>
+										{/* INGREDIENTS */}
+										<TextInput
+											title="Ingredients"
 											type="text"
 											fullWidth={true}
-											name="organizer"
-											values={values.organizer}
-											errors={errors.organizer}
-											touched={touched.organizer}
-										/>
-										{/* lOCATION */}
-										<TextInput
-											title="Location"
-											type="text"
-											fullWidth={true}
-											name="location"
-											values={values.location}
-											errors={errors.location}
-											touched={touched.location}
-										/>
-										{/* START DATE */}
-										<DateInput
-											title="Start Date"
-											name="startDate"
-											values={values.startDate}
-											errors={errors.startDate}
-											touched={touched.startDate}
+											name="ingredients"
+											values={values.ingredients}
+											errors={errors.ingredients}
+											touched={touched.ingredients}
 										/>
 
-										{/* END DATE */}
-										<DateInput
-											title="End Date"
-											name="endDate"
-											values={values.endDate}
-											errors={errors.endDate}
-											touched={touched.endDate}
+										{/* TOOLS */}
+										<TextInput
+											title="Tools"
+											type="text"
+											fullWidth={true}
+											name="tools"
+											values={values.tools}
+											errors={errors.tools}
+											touched={touched.tools}
+										/>
+
+										{/* CATEGORIES */}
+										<SelectInput
+											title="Categories"
+											name="categoryId"
+											values={values.categoryId}
+											errors={errors.categoryId}
+											touched={touched.categoryId}
+											listForeignDatas={listCategories}
 										/>
 
 										{/* END INPUT */}

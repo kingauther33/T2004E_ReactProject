@@ -58,12 +58,13 @@ const DataTable = (props) => {
 
 	useEffect(() => {
 		setRows(props.rows);
+		debugger;
 	}, [props.rows]);
 
 	// XU LY SEARCH
 	const requestSearch = () => {
 		const searchInput = document.querySelector('#searchInput');
-		console.log(allStartingRows);
+		// console.log(allStartingRows);
 		const filteredRows = allStartingRows.filter((row) => {
 			return 'title' in row
 				? row.title.toLowerCase().includes(searchInput.value.toLowerCase())
@@ -95,15 +96,6 @@ const DataTable = (props) => {
 		<></>
 	);
 
-	// VERSION dung column theo DATA
-	/* const renderedColumns = columns ? (
-		columns.map((column, index) => (
-			<StyledTableCell key={index}>{column}</StyledTableCell>
-		))
-	) : (
-		<></>
-	); */
-
 	const checkRenderdRow = (row, key) => {
 		let value;
 		if (key === 'content') {
@@ -126,6 +118,12 @@ const DataTable = (props) => {
 					style={{ width: '75px' }}
 				/>
 			);
+		} else if (key === 'category') {
+			if (row[key].length > 0) {
+				value = row[key][0].name;
+			}
+			// value = row[key]
+			// value = row[key].name;
 		} else {
 			value = row[key];
 		}
@@ -144,7 +142,7 @@ const DataTable = (props) => {
 					{index + 1}
 				</StyledTableCell>
 				{Object.keys(row)
-					.filter((key) => key !== 'id')
+					.filter((key) => key !== 'id' && key !== 'categoryId')
 					.map((key, index) =>
 						key !== 'campaignComments' ? (
 							<StyledTableCell
@@ -157,7 +155,7 @@ const DataTable = (props) => {
 							>
 								{/* {key === 'content' ? parse(row[key]) : row[key]} */}
 								{checkRenderdRow(row, key)}
-								{console.log(row)}
+								{/* {console.log(row)} */}
 							</StyledTableCell>
 						) : (
 							''
