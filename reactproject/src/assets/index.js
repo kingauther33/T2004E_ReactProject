@@ -40,6 +40,9 @@ const images = {
 	header: {
 		login: require('./User.png').default,
 	},
+	recipes:{
+		ci: require('./cheesecake.jpg').default,
+	},
 
 	homepage: {
 		Healthy_food: require('./Healthy_food.png').default,
