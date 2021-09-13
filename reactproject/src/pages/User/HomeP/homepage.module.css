@@ -16,8 +16,9 @@
 }
 
 .top {
+    background-size: auto;
     /* Rectangle 1187 */
-    position: relative;
+    position: absolute;
     width: 1304px;
     height: 794px;
     left: 100px;
@@ -26,6 +27,7 @@
     background: linear-gradient(0deg, rgba(128, 128, 128, 0.6), rgba(128, 128, 128, 0.6));
     background-blend-mode: multiply, normal;
     filter: blur(0px);
+    background-image: url("../../../assets/Healthy_food.png");
 }
 
 .title1 {
@@ -89,7 +91,7 @@
     width: 1243px;
     height: 2312px;
     left: 77px;
-    top: 400px;
+    top: 1200px;
 
     background-image: url("../../../assets/campaign_bg.png");
     background-repeat: no-repeat;

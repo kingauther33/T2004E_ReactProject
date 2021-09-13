@@ -8,7 +8,7 @@ const HomeP = (props) => {
         <div className={styles['container']}>
 
             <div className={styles['top']}>
-                <img src={images.homepage.Healthy_food} alt="HealthyFood"/>
+                {/* <img src={images.homepage.Healthy_food} alt="HealthyFood"/> */}
                     <p className={styles['center']}>Make your life better</p>
             </div>
 

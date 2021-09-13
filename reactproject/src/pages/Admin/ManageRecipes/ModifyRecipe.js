@@ -1,46 +1,59 @@
-import React, { useState, useRef } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Form, Formik, Field, FieldArray, ErrorMessage } from 'formik';
+import { makeStyles } from '@material-ui/core/styles';
 import * as Yup from 'yup';
-import { Box, Card, CardContent } from '@material-ui/core';
-import MuiAlert from '@material-ui/lab/Alert';
-
+import { Typography, Box, Card, CardContent } from '@material-ui/core';
+import { withRouter, useParams } from 'react-router-dom';
 import axios from 'axios';
-import { API } from '../../../API';
-import AdminContent from './../../../components/admin/Content/index';
+import { API } from './../../../API/index';
+
+// CUSTOM COMPONENT
+import AdminContent from '../../../components/admin/Content';
 import TextInput from './../../../components/admin/Forms/TextInput';
 import ImageInput from '../../../components/admin/Forms/ImageInput';
 import CKEditorInput from '../../../components/admin/Forms/CKEditorInput';
 import DateInput from './../../../components/admin/Forms/DateInput';
 import SnackbarPopup from '../../../components/admin/SnackbarPopup';
+import DataContext from './../../../store/PassData-context';
 
-// Alert Function
-function Alert(props) {
-	return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
+// CK EDITOR + HTML PARSER + DATETIME PICKER
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
-const AddEvent = () => {
-	// INITIAL STATES AND REFS
-	const [selectedFile, setSelectedFile] = useState(null);
+const useStyles = makeStyles((theme) => ({
+	root: {
+		'& > *': {
+			margin: theme.spacing(1),
+		},
+	},
+}));
+
+const ModifyRecipe = (props) => {
+	const [data, setData] = useState([]);
+	const { id } = useParams();
+	const context = useContext(DataContext);
+
 	const [notification, setNotification] = useState({
 		message: '',
 		isSuccess: true,
 		isOpen: false,
 	});
 
-	//INITIAL FORM VALUES
 	const initialValues = {
-		title: '',
-		description: '',
-		image: null,
-		content: '', // CKEDITOR
-		organizer: '',
-		location: '',
-		startDate: new Date(),
-		endDate: new Date(),
+		id: context.item.id,
+		title: context.item.title,
+		description: context.item.description,
+		image: context.item.image,
+		content: context.item.content, // CKEDITOR
+		organizer: context.item.organizer,
+		location: context.item.location,
+		startDate: context.item.startDate,
+		endDate: context.item.endDate,
 	};
 
 	// VALIDATION FORM
 	const validationSchema = Yup.object().shape({
+		id: Yup.number(),
 		title: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required!'),
 		description: Yup.string()
 			.min(2, 'Too Short!')
@@ -52,8 +65,8 @@ const AddEvent = () => {
 			.max('1000', 'Too Long!')
 			.required('Required!'), // CKEDITOR
 		organizer: Yup.string()
-			.min(2, 'Too Short!')
-			.max(50, 'Too Long!')
+			.min('15', 'Too Short!')
+			.max('1000', 'Too Long!')
 			.required('Required!'),
 		location: Yup.string()
 			.min(2, 'Too Short!')
@@ -68,13 +81,23 @@ const AddEvent = () => {
 			.required('Required!'),
 	});
 
+	// FUNCTION kha giong ComponentDidMount
+	useEffect(() => {
+		// Test Fetch data from API
+
+		// CLean up Redundant
+		return () => {
+			setData([]);
+		};
+	}, []);
+
 	const handleSubmit = async (values) => {
 		const json = JSON.stringify(values);
 
-		// POST FUNCTION
+		// PUT FUNCTION
 		await axios
-			.post(
-				API.add_event.url,
+			.put(
+				API.edit_event.url + context.item.id,
 				// formData,
 				json,
 				{
@@ -86,7 +109,7 @@ const AddEvent = () => {
 			)
 			.then((response) => {
 				setNotification({
-					message: 'Successfully created new event!',
+					message: 'Successfully edit event!',
 					isOpen: true,
 					isSuccess: true,
 				});
@@ -94,7 +117,7 @@ const AddEvent = () => {
 			})
 			.catch((err) => {
 				setNotification({
-					message: 'Failed to create new event!',
+					message: 'Failed to edit event!',
 					isOpen: true,
 					isSuccess: false,
 				});
@@ -104,6 +127,7 @@ const AddEvent = () => {
 
 	return (
 		<AdminContent>
+			<Typography variant="h4">Editing {context.item.title}</Typography>
 			<Box m={4}>
 				<Card>
 					<CardContent className="m-2">
@@ -146,9 +170,11 @@ const AddEvent = () => {
 											touched={touched.image}
 											setFieldValue={setFieldValue}
 										/>
+										{/* CONTENT */}
 										<CKEditorInput
 											title="Content"
 											name="content"
+											// type="none"
 											fullWidth={false}
 											values={values.content}
 											errors={errors.content}
@@ -165,7 +191,7 @@ const AddEvent = () => {
 											errors={errors.organizer}
 											touched={touched.organizer}
 										/>
-										{/* LOCATION */}
+										{/* lOCATION */}
 										<TextInput
 											title="Location"
 											type="text"
@@ -210,4 +236,4 @@ const AddEvent = () => {
 	);
 };
 
-export default AddEvent;
+export default withRouter(ModifyRecipe);
