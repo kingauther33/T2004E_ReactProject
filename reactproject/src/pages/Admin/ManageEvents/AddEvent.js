@@ -146,6 +146,7 @@ const AddEvent = () => {
 											touched={touched.image}
 											setFieldValue={setFieldValue}
 										/>
+										{/* CONTENT */}
 										<CKEditorInput
 											title="Content"
 											name="content"
