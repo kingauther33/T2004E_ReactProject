@@ -1,4 +1,4 @@
-const base_url = 'https://localhost:44313';
+const base_url = 'https://localhost:5001';
 
 export const API = {
 	// CAMPAIGNS
@@ -153,6 +153,16 @@ export const API = {
 			ingredients: '',
 			tools: '',
 			categoryId: 0,
+		}),
+		method: 'PUT',
+	},
+
+	// LOGIN
+	login: {
+		url: base_url + '/api/Login',
+		params: JSON.stringify({
+			email: '',
+			password: '',
 		}),
 		method: 'PUT',
 	},

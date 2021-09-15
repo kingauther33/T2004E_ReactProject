@@ -8,10 +8,6 @@ namespace ReactAPI.Models
 {
     public partial class T2004E_ReactProjectContext : DbContext
     {
-        public T2004E_ReactProjectContext()
-        {
-        }
-
         public T2004E_ReactProjectContext(DbContextOptions<T2004E_ReactProjectContext> options)
             : base(options)
         {
@@ -25,15 +21,6 @@ namespace ReactAPI.Models
         public virtual DbSet<EventComment> EventComments { get; set; }
         public virtual DbSet<Recipe> Recipes { get; set; }
         public virtual DbSet<User> Users { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=DESKTOP-IS0140H\\SQLEXPRESS;Initial Catalog=T2004E_ReactProject;Integrated Security=True");
-            }
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
