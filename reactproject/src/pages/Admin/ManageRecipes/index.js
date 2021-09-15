@@ -100,6 +100,7 @@ const ManageRecipes = (props) => {
 				await axios
 					.delete(API.delete_recipe.url + item.id)
 					.then((respond) => {
+						console.log(respond);
 						handleFetchRecipe();
 						setNotification({
 							message: 'Delete successfully!',

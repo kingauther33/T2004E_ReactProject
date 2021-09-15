@@ -36,6 +36,7 @@ import ManageCategories from '../pages/Admin/ManageCategories';
 import ModifyCategory from '../pages/Admin/ManageCategories/ModifyCategory';
 import AddCategory from '../pages/Admin/ManageCategories/AddCategory';
 import Demo from '../pages/Demo';
+import AdminRedirect from '../pages/AdminRedirect';
 
 const LoginCallBackRoute = {
 	path: '/login-callback', // URL trên browser
@@ -160,10 +161,17 @@ const DemoRoute = {
 	layout: AdminLayout,
 	page: Demo,
 };
+
 const HomeRoute = {
-	path: '/home',
+	path: '/',
 	layout: UserLayout,
 	page: HomeP,
+};
+
+const AdminRoute = {
+	path: '/redirect',
+	layout: LoginLayout,
+	page: AdminRedirect,
 };
 
 export const routes = [
@@ -198,4 +206,5 @@ export const routes = [
 	ModifyRecipeRoute,
 
 	DemoRoute,
+	AdminRoute,
 ];

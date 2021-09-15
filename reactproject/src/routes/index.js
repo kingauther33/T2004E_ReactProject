@@ -1,5 +1,7 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
+import LoginLayout from '../layout/LoginLayout';
+import AdminRedirect from './../pages/AdminRedirect/index';
 
 // Function bieu thi LAYOUT di voi PAGE cua cac Routes
 const routeWrapper = (Layout, Page) => {
@@ -23,6 +25,11 @@ const routeWrapper = (Layout, Page) => {
 // Function bieu thi URL ung voi tung Trang Rieng Biet cua cac Routes
 const HealthyFoodRoutes = (props) => {
 	const { layout, page, path, exact, ...rest } = props;
+	if (path.includes('manage') || path.includes('dashboard')) {
+		if (!localStorage.getItem('token')) {
+			return <Redirect to="/redirect" />;
+		}
+	}
 
 	return (
 		<Route exact={exact} path={path}>

@@ -2,15 +2,20 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using ReactAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace ReactAPI
 {
@@ -28,6 +33,9 @@ namespace ReactAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var connectionString = Configuration.GetConnectionString("T2004E_ReactProject");
+            services.AddDbContextPool<T2004E_ReactProjectContext>(
+                options => options.UseSqlServer(connectionString));
             // ADD dòng này để Allow Origin (CORS)
             services.AddCors(options =>
             {
@@ -42,9 +50,26 @@ namespace ReactAPI
                     });
             });
             services.AddControllers();
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.RequireHttpsMetadata = false;
+                options.SaveToken = true;
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidIssuer = Configuration["Jwt:Issuer"],
+                    ValidAudience = Configuration["Jwt:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                };
+            });
 
             // Dòng này để đảm bảo CONTROLLER chạy ổn
-            services.AddTransient<Models.T2004E_ReactProjectContext, Models.T2004E_ReactProjectContext>();
+            // services.AddTransient<Models.T2004E_ReactProjectContext, Models.T2004E_ReactProjectContext>();
 
             services.AddSwaggerGen(c =>
             {
@@ -67,6 +92,8 @@ namespace ReactAPI
             app.UseRouting();
 
             app.UseCors(MyAllowSpecificOrigins);
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
