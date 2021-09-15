@@ -15,6 +15,10 @@
     color: #FFFFFF;
 }
 
+.homepage {
+    padding-bottom: 800px;
+}
+
 .top {
     background-size: auto;
     /* Rectangle 1187 */
@@ -27,7 +31,7 @@
     background: linear-gradient(0deg, rgba(128, 128, 128, 0.6), rgba(128, 128, 128, 0.6));
     background-blend-mode: multiply, normal;
     filter: blur(0px);
-    background-image: url("../../../assets/Healthy_food.png");
+    /* background-image: url("../../../assets/Healthy_food.png"); */
 }
 
 .title1 {
@@ -366,8 +370,8 @@
     position: relative;
     width: 960px;
     height: 387px;
-    left: 160px;
-    top: 184px;
+    left: 200px;
+    top: 1000px;
 
 
     /* Inside Auto Layout */
