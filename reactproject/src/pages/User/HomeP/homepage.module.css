@@ -16,7 +16,7 @@
 }
 
 .homepage {
-    padding-bottom: 800px;
+    padding-bottom: 900px;
 }
 
 .top {
@@ -87,6 +87,36 @@
     order: 0;
     flex-grow: 0;
     margin: 48px 0px;
+}
+
+.title3 {
+    /* Recipes */
+
+
+    position: relative;
+    width: 263px;
+    height: 58px;
+    left: 605px;
+    top: 800px;
+
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 58px;
+    /* identical to box height */
+
+    text-align: center;
+
+    color: #333333;
+
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 0px;
 }
 
 .campaign {
@@ -596,4 +626,506 @@
     align-self: stretch;
     flex-grow: 0;
     margin: 24px 0px;
+}
+
+.recipe {
+    /* Card Recipes */
+
+
+    /* Auto Layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+
+    position: relative;
+    width: 960px;
+    height: 480px;
+    left: 240px;
+    top: 800px;
+
+    /* Neutral/1 */
+
+    background: #FFFFFF;
+    box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.04);
+    border-radius: 12px;
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 48px 0px;
+}
+
+.recipe1 {
+    /* Rectangle 1182 */
+
+
+    position: static;
+    width: 463px;
+    height: 480px;
+    left: 497px;
+    top: 0px;
+
+    border-radius: 12px;
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 1;
+    margin: 0px 24px;
+}
+
+.recipe2 {
+    /* Frame 86 */
+
+
+    /* Auto Layout */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 32px;
+
+    position: relative;
+    width: 473px;
+    height: 480px;
+    left: 0px;
+    top: 0px;
+
+    border-radius: 16px;
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 0px 24px;
+}
+
+.recipe21 {
+    /* Content */
+
+    /* Auto Layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+
+    position: relative;
+    width: 409px;
+    height: 212px;
+    left: 32px;
+    top: 32px;
+
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 16px 0px;
+}
+
+.recipetitle {
+    /* Title */
+
+
+    /* Auto Layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+
+    position: relative;
+    width: 409px;
+    height: 52px;
+    left: 0px;
+    top: -30px;
+
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 16px 0px;
+}
+
+.recipecontent {
+    /* Content/Direction */
+
+    /* Auto Layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+
+    position: relative;
+    width: 409px;
+    height: 144px;
+    left: 0px;
+    top: -40px;
+
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 16px 0px;
+}
+
+.recipe22 {
+    /* See more */
+
+
+    position: relative;
+    /* width: 91px;
+    height: 24px; */
+    left: 294px;
+    top: 12px;
+
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: right;
+
+    /* Primary */
+
+    color: #3EBE6A;
+
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 0px 0px;
+}
+
+.register {
+    /* Registering */
+
+
+    /* Auto Layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    /* padding: 0px 160px; */
+
+    position: relative;
+    width: 0px;
+    height: 669px;
+    left: 0px;
+    top: 900px;
+
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 3;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 0px 0px;
+}
+
+.register1 {
+    /* Rectangle 1182 */
+
+
+    position: relative;
+    width: 497px;
+    height: 513px;
+    left: 200px;
+    top: 78px;
+
+    border-radius: 12px;
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 0px 64px;
+}
+
+.register2 {
+    /* Frame 172 */
+
+
+    /* Auto Layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+
+    position: relative;
+    width: 399px;
+    height: 513px;
+    left: 180px;
+    top: 78px;
+
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+    margin: 0px 64px;
+}
+
+.register21 {
+    /* Frame 171 */
+
+
+    /* Auto Layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+
+    position: relative;
+    width: 399px;
+    height: 412px;
+    left: 0px;
+    top: -50px;
+
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 64px 0px;
+}
+
+.registertype {
+    /* Frame 46 */
+
+
+    /* Auto Layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+
+    position: relative;
+    width: 399px;
+    height: 272px;
+    left: 0px;
+    top: 0px;
+
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 24px 0px;
+}
+
+.registertype1 {
+    /* Frame 160 */
+
+
+    /* Auto Layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 16px 28px;
+
+    position: relative;
+    width: 399px;
+    height: 56px;
+    left: 0px;
+    top: 0px;
+
+    /* Gray 4 */
+
+    border: 1px solid #BDBDBD;
+    border-radius: 8px;
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 0px 0px;
+}
+
+.registertype2 {
+    /* Frame 159 */
+
+
+    /* Auto Layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 16px 28px;
+
+    position: relative;
+    width: 399px;
+    height: 56px;
+    left: 0px;
+    top: 10px;
+
+    /* Gray 4 */
+
+    border: 1px solid #BDBDBD;
+    border-radius: 8px;
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 16px 0px;
+}
+
+.registertype3 {
+    /* Frame 158 */
+
+
+    /* Auto Layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 16px 28px;
+
+    position: relative;
+    width: 399px;
+    height: 56px;
+    left: 0px;
+    top: 0px;
+
+    /* Gray 4 */
+
+    border: 1px solid #BDBDBD;
+    border-radius: 8px;
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 2;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 16px 0px;
+}
+
+.registertype4 {
+    /* Frame 157 */
+
+
+    /* Auto Layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 16px 28px;
+
+    position: relative;
+    width: 399px;
+    height: 56px;
+    left: 0px;
+    top: 0px;
+
+    /* Gray 4 */
+
+    border: 1px solid #BDBDBD;
+    border-radius: 8px;
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 3;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 16px 0px;
+}
+
+.register22 {
+    /* Frame 131 */
+
+
+    /* Auto Layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 8px 24px;
+
+    position: relative;
+    width: 120px;
+    height: 37px;
+    left: 0px;
+    top: -130px;
+
+    /* Linear 1 */
+
+    background: linear-gradient(90.13deg, #8ED35E 0%, #3EBE6A 101.33%);
+    border-radius: 24px;
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 64px 0px;
+}
+
+.registerbutton {
+    /* Register */
+
+
+    position: relative;
+    width: 72px;
+    height: 21px;
+    left: -45px;
+    top: 0px;
+
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 150%;
+    /* identical to box height, or 21px */
+
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+
+    color: #FFFFFF;
+
+
+    /* Inside Auto Layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 48px;
 }

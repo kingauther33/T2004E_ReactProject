@@ -132,6 +132,77 @@ const HomeP = (props) => {
                         </div>
                     </div>
                 </div>
+
+                <h1 className={styles['title3']}>Recipe</h1>
+
+                <div className={styles['recipe']}>
+                    <div className={styles['recipe1']}>
+                        <img src={images.homepage.recipe} alt="recipe"/>
+                    </div>
+                    
+                    <div className={styles['recipe2']}>
+                        <div className={styles['recipe21']}>
+                            <div className={styles['recipetitle']}>
+                                <h4>Roasted Cauliflower Onions</h4>
+                            </div>
+
+                            <div className={styles['recipecontent']}>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                 Nibh iaculis est tellus quis feugiat arcu lacus ullamcorper ullamcorper.
+                                 Sit eu vitae, felis rutrum at ac, luctus.
+                                 Praesent convallis fusce consectetur sagittis.
+                                 Neque, nisl porta vitae aenean non aliquam dictum fermentum consectetur.
+                                 Et leo, et, rhoncu</p>
+                            </div>
+                        </div>
+
+                        <div className={styles['recipe22']}>
+                            <h4>See more</h4>
+                        </div>
+                    </div>    
+                </div>
+
+                <div className={styles['register']}>
+                    <div className={styles['register1']}>
+                        <img src={images.homepage.register} alt="register"/>
+                    </div>
+
+                    <div className={styles['register2']}>
+                        <div className={styles['register21']}>
+                            <h1>Register for more information</h1>
+
+                            <div className={styles['registertype']}>
+                                <div className={styles['registertype1']}>
+                                    <p>
+                                        Fullname
+                                    </p>
+                                </div>
+
+                                <div className={styles['registertype2']}>
+                                    <p>
+                                        Nickname
+                                    </p>
+                                </div>
+
+                                <div className={styles['registertype3']}>
+                                    <p>
+                                        Email Address
+                                    </p>
+                                </div>
+
+                                <div className={styles['registertype4']}>
+                                    <p>
+                                        Phone number
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className={styles['register22']}>
+                            <p className={styles['registerbutton']}>Register</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         </>

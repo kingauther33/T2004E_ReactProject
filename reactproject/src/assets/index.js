@@ -52,6 +52,8 @@ const images = {
 		event2: require('./event2.png').default,
 		event3: require('./event3.png').default,
 		camp: require('./img_camp_2.png').default,
+		recipe: require('./recipe.jpg').default,
+		register: require('./register.jpg').default,
 	},
 };
 
