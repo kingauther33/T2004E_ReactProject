@@ -10,6 +10,7 @@ import AboutUs from './pages/User/AboutUs';
 import Recipes from './pages/User/Recipes';
 import Events from './pages/User/Events';
 import { DataContextProvider } from './store/PassData-context';
+import RecipesDetail from "./pages/User/Recipes/recipesDetail";
 
 function App() {
 	return (
@@ -32,6 +33,7 @@ function App() {
 						<Route path="/contact-us" component={ContactUs} />
 						<Route path="/events" component={Events} />
 						<Route path="/recipes" component={Recipes} />
+						<Route path="/recipesDetail" component={RecipesDetail} />
 
 						{/* Làm Page Lỗi */}
 						<Route path="/404">

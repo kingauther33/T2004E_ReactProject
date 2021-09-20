@@ -37,6 +37,7 @@ import ModifyCategory from '../pages/Admin/ManageCategories/ModifyCategory';
 import AddCategory from '../pages/Admin/ManageCategories/AddCategory';
 import Demo from '../pages/Demo';
 import AdminRedirect from '../pages/AdminRedirect';
+import RecipesDetail from "../pages/User/Recipes/recipesDetail";
 
 const LoginCallBackRoute = {
 	path: '/login-callback', // URL trên browser
@@ -173,6 +174,11 @@ const AdminRoute = {
 	layout: LoginLayout,
 	page: AdminRedirect,
 };
+const RecipesDetailRoute ={
+	path:'/Recipes-detail',
+	layout:UserLayout,
+	page:RecipesDetail,
+}
 
 export const routes = [
 	LoginCallBackRoute,
@@ -182,6 +188,7 @@ export const routes = [
 	RecipesRoute,
 	HomeRoute,
 	CampaignsRoute,
+	RecipesDetailRoute,
 
 	AdminDashboardRoute,
 

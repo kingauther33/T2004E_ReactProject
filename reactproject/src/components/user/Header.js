@@ -14,13 +14,16 @@ const Header = () => {
                     <Link className={styles['NavLink']} to='/' activeStyle>
                         Home
                     </Link>
-                    <Link className={styles['NavLink']} to='/' activeStyle>
+                    <Link className={styles['NavLink']} to='/about-us' activeStyle>
                         About
                     </Link>
                     <Link className={styles['NavLink']} to='/' activeStyle>
                         Campaigns
                     </Link>
-                    <Link className={styles['NavLink']} to='/' activeStyle>
+                    <Link className={styles['NavLink']} to='/recipes' activeStyle>
+                        Recipes
+                    </Link>
+                    <Link className={styles['NavLink']} to='/contact-us' activeStyle>
                         Contact
                     </Link>
 
