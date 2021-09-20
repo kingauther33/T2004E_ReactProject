@@ -39,6 +39,9 @@ import Demo from '../pages/Demo';
 import AdminRedirect from '../pages/AdminRedirect';
 import RecipesDetail from "../pages/User/Recipes/recipesDetail";
 
+import Events from "../pages/User/Events";
+import EventDetail from "../pages/User/Events/eventdetail";
+
 const LoginCallBackRoute = {
 	path: '/login-callback', // URL trên browser
 	layout: LoginLayout, // LAYOUT ứng với từng ROUTE
@@ -66,7 +69,13 @@ const ContactUsRoute = {
 const EventsRoute = {
 	path: '/events',
 	layout: UserLayout,
-	page: ContactUs,
+	page: Events,
+};
+
+const EDetail = {
+	path: '/eventdetail',
+	layout: UserLayout,
+	page: EventDetail,
 };
 
 const RecipesRoute = {
@@ -189,7 +198,7 @@ export const routes = [
 	HomeRoute,
 	CampaignsRoute,
 	RecipesDetailRoute,
-
+	EDetail,
 	AdminDashboardRoute,
 
 	// ADMIN CAMPAIGNS

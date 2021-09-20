@@ -43,7 +43,9 @@ const images = {
 	recipes:{
 		ci: require('./cheesecake.jpg').default,
 	},
-
+	events: {
+		ni: require('./niu.jpg').default,
+	},
 	homepage: {
 		Healthy_food: require('./Healthy_food.png').default,
 		Rectangle: require('./Rectangle 1178.png').default,
